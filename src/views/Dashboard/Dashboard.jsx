@@ -1,141 +1,197 @@
-import React, { useState } from 'react';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import { makeStyles } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { Container, GridList } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, { useEffect, useState } from 'react';
+import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
+import _ from 'lodash';
+import apiReaction from '../../service/api/apiReaction';
+import apiFeed from '../../service/api/apiFeed';
+import axios from 'axios';
+import loveOn from '../../assets/Reaction/loveOn.svg';
+import loveOff from '../../assets/Reaction/loveOff.svg';
+import SendIcon from '@material-ui/icons/Send';
 
 const Dashboard = () => {
-  const [open, setOpen] = useState(false);
-  const useStyles = makeStyles((theme) => ({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      display: '',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+  const [textValue, setTextValue] = useState('');
+  const [textPost, setTextPost] = useState([]);
+  const [reaction, setReaction] = useState(false);
+  const [reactionLove, setReactionLove] = useState(false);
+  const [reactionLike, setReactionLike] = useState(false);
 
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  }));
-  const classes = useStyles();
-  const handleOpen = () => {
-    setOpen(true);
+  const Feed = () => {
+    const URL = 'https://segware-book-api.segware.io/api';
+
+    const token = localStorage.getItem('token');
+    axios
+      .get(`${URL}/feeds`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        setTextPost(data);
+        console.log('data', data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(textPost);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  useEffect(() => {
+    Feed();
+  }, []);
+
+  // useEffect(() => {
+  //   apiReaction(reactionLove, reactionLike);
+  // }, [reaction]);
+
+  const handleTextValue = (text) => {
+    setTextValue(text.target.value);
+    console.log(text.target.value);
   };
+
+  const handleClick = () => {
+    if (!textValue) return;
+
+    const content = textValue;
+    console.log('content', content);
+
+    apiFeed({ content: content });
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
   return (
-    // <div>
-    //   <div
-    //     style={{
-    //       justifyContent: 'center',
-    //       textAlign: 'center',
-    //       display: 'flex',
-    //       fontSize: '50px',
-    //       fontFamily: 'Pacifico',
-    //       background: 'black',
-    //       height: '140px',
-    //     }}
-    //   >
-    //     <h1 style={{ marginLeft: '10px', marginTop: '35px', color: 'white' }}>Post</h1>
-
-    //     <h1 style={{ marginLeft: '25px', marginTop: '35px', color: '#3D4DDB' }}> It!</h1>
-
-    //     <div style={{ marginLeft: '65vw' }}>
-    //       <button
-    //         type="button"
-    //         style={{ background: 'black', cursor: 'pointer', border: 'none' }}
-    //         onClick={handleOpen}
-    //       >
-    //         <PersonIcon fontSize="large" style={{ marginTop: '45px', color: 'white' }} />
-    //       </button>
-    //     </div>
-    //   </div>
-    //   <Modal
-    //     aria-labelledby="transition-modal-title"
-    //     aria-describedby="transition-modal-description"
-    //     className={classes.modal}
-    //     open={open}
-    //     onClose={handleClose}
-    //     closeAfterTransition
-    //     BackdropComponent={Backdrop}
-    //     BackdropProps={{
-    //       timeout: 500,
-    //     }}
-    //   >
-    //     <Fade in={open}>
-    //       <div className={classes.paper}>
-    //         <h2 id="transition-modal-title">Transition modal</h2>
-    //         <p id="transition-modal-description">react-transition-group animates me.</p>
-    //       </div>
-    //     </Fade>
-    //   </Modal>
-    // </div>
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar style={{ background: 'black' }}>
-          <Typography style={{ fontFamily: 'Pacifico' }} variant="h4" className={classes.title}>
-            Post It!
-          </Typography>
+    <div>
+      <HeaderDashboard />
+      <Container cellHeight={160} cols={3} style={{ height: '100vh' }}>
+        <div
+          style={{
+            marginTop: '2vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alingItems: 'center',
+          }}
+        >
+          <label style={{ fontFamily: 'Poppins', fontSize: '30px' }}>Escreva seu texto</label>
+        </div>
+        <div
+          style={{
+            marginTop: '2vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alingItems: 'center',
+          }}
+        >
+          <textarea
+            style={{
+              fontFamily: 'Poppins',
+              width: '500px',
+              minWidth: '490px',
+              maxWidth: '490px',
+              minHeight: '100px',
+              maxHeight: '100px',
+              fontSize: '20px',
+              borderTopLeftRadius: '8px',
+              borderBottomLeftRadius: '8px',
+              outline: 'none',
+            }}
+            aria-label="minimum height"
+            rowsMax={15}
+            placeholder="Digite seu texto aqui!"
+            value={textValue}
+            onChange={(event) => handleTextValue(event)}
+          />
           <Button
-            style={{ background: 'black', cursor: 'pointer', border: 'none' }}
-            onClick={handleOpen}
-            color="inherit"
+            style={{
+              cursor: 'pointer',
+              fontFamily: 'Poppins',
+              fontWeight: '700',
+              color: ' white',
+              background: '#115714dd',
+              border: 'none',
+              borderTopRightRadius: '8px',
+              borderBottomRightRadius: '8px',
+              borderTopLeftRadius: '0px',
+              borderBottomLeftRadius: '0px',
+              outline: 'none',
+            }}
+            onClick={() => handleClick()}
           >
-            <PersonIcon fontSize="large" style={{ color: 'white' }} />
+            <SendIcon />
           </Button>
-        </Toolbar>
-      </AppBar>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <h2
-              style={{ fontFamily: 'Poppins', fontSize: '20px', cursor: 'pointer' }}
-              id="transition-modal-title"
-              onClick={() => {
-                window.location.href = 'http://localhost:3000/';
-              }}
-            >
-              Sair
-            </h2>
+        </div>
+
+        <div
+          style={{
+            alingItems: 'center',
+            justifyContent: 'center',
+            display: 'flex',
+          }}
+        >
+          <div
+            style={{
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flow-root',
+            }}
+          >
+            {textPost &&
+              textPost.map((item, index) => (
+                <div
+                  style={{
+                    borderLeft: '1px solid #DEDEDE',
+                    borderTop: '1px solid #DEDEDE',
+                    width: '500px',
+                    height: '250px',
+                    borderRadius: '8px',
+                    marginTop: '16px',
+                    boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '500px',
+                      height: '450px',
+                      borderRadius: '8px',
+                      alingItems: 'center',
+                      justifyContent: 'center',
+                      display: 'flex',
+                      marginTop: '15px',
+                    }}
+                  >
+                    <p
+                      style={{
+                        maxWidth: '500px',
+                        maxHeight: '250px',
+                        fontFamily: 'Poppins',
+                        marginTop: '15px',
+                      }}
+                    >
+                      {item.content}
+                    </p>
+                  </div>
+                  <span
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setReactionLove(!reactionLove)}
+                  >
+                    {reactionLove && reactionLove > 0 ? (
+                      <img style={{ width: '30px', height: '30px' }} src={loveOff} alt="" />
+                    ) : (
+                      <img style={{ width: '30px', height: '30px' }} src={loveOn} alt="" />
+                    )}
+                  </span>
+                </div>
+              ))}
           </div>
-        </Fade>
-      </Modal>
+        </div>
+      </Container>
     </div>
   );
 };
