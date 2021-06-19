@@ -41,22 +41,15 @@ function LoginScreen(props) {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  const handleClickLogin = () => {
+  const handleClickLogin = async () => {
     const { username, password } = values;
     if (username == '') return setMessageUser('Campo obrigatório*');
     if (password == '') return setMessagePassword('Campo obrigatório*');
 
-    if (username != username || password !== password)
-      return setMessageError('Usuário ou senha errada, tente novamente!');
-
     apiLogin({ username, password });
   };
 
-  const preventDefault = (event) => event.preventDefault();
+  // const preventDefault = (event) => event.preventDefault();
   return (
     <div
       style={{
@@ -126,7 +119,6 @@ function LoginScreen(props) {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
                 >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
@@ -135,7 +127,6 @@ function LoginScreen(props) {
           />
           <span style={{ color: 'red' }}>{messagePassword}</span>
         </div>
-        <span style={{ color: 'red' }}>{messageError}</span>
 
         <Button
           style={{
@@ -192,7 +183,9 @@ function LoginScreen(props) {
 
               cursor: 'pointer',
             }}
-            onClick={preventDefault}
+            onClick={() => {
+              window.location.href = 'http://localhost:3000/recuperar-senha';
+            }}
           >
             Esqueci minha senha
           </Link>

@@ -8,15 +8,14 @@ const apiLogin = ({ username, password }) => {
   // const jwt = (res) => localStorage.setItem('JWT', res.data);
   // const getJwt = localStorage.getItem('JWT');
   axios
-    .post(`${URL}/sign-in`, {
+    .post(`${URL}/sign-up`, {
       username: username,
       password: password,
     })
     .then((response) => {
-      localStorage.setItem('token', response.data);
-
       if (response.status == 200) {
-        return (window.location.href = 'http://localhost:3000/dashboard');
+        alert('Usuário cadastrado com sucesso!');
+        return (window.location.href = 'http://localhost:3000/');
       }
     })
     .catch((err) => {

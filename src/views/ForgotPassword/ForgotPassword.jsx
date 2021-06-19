@@ -1,47 +1,31 @@
 import React, { useState } from 'react';
-import apiCadastro from '../../service/api/apiCadastro';
+import apiForgotPass from '../../service/api/apiForgotPass';
 //Material-UI
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 //Styled-Components
-import { Button, Container, Icon } from '@material-ui/core';
-import { Link } from '@material-ui/core';
-
-const Cadastro = () => {
+import { Button, Container } from '@material-ui/core';
+const ForgotPassword = () => {
   const [values, setValues] = useState({
     username: '',
-    password: '',
     showPassword: false,
   });
-  const [messagePassword, setMessagePassword] = useState('');
-  const [messageUser, setMessageUser] = useState('');
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
+  const [messageUser, setMessageUser] = useState('');
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  const handleClickSignUp = () => {
-    const { username, password } = values;
+  const handleForgotPassword = () => {
+    const { username } = values;
     if (username == '') return setMessageUser('Campo obrigatório*');
-    if (password == '') return setMessagePassword('Campo obrigatório*');
-    apiCadastro({ username, password });
+
+    apiForgotPass({ username });
   };
 
   return (
@@ -85,16 +69,29 @@ const Cadastro = () => {
             fontWeight: '700',
             alingItems: 'center',
             justifyContent: 'center',
-            display: 'grid',
-            paddingTop: 30,
+            display: 'flex',
+            paddingTop: 50,
           }}
         >
-          {' '}
-          Cadastro
+          Recuperar
+        </h1>
+        <h1
+          style={{
+            color: 'black',
+            fontFamily: 'Poppins',
+            fontSize: '40px',
+            fontWeight: '700',
+            alingItems: 'center',
+            justifyContent: 'center',
+            display: 'flex',
+          }}
+        >
+          Senha
         </h1>
         <div
           style={{
             width: '100%',
+            marginTop: '90px',
           }}
         >
           <InputLabel style={{ marginTop: '70px', fontSize: '25px' }}>Nome</InputLabel>
@@ -105,36 +102,7 @@ const Cadastro = () => {
             onChange={handleChange('username')}
           />
           <span style={{ color: 'red' }}>{messageUser}</span>
-
-          <InputLabel
-            style={{ marginTop: '30px', fontSize: '25px' }}
-            htmlFor="standard-adornment-password"
-          >
-            Senha
-          </InputLabel>
-
-          <Input
-            style={{ width: '100%', marginBottom: '12px', fontSize: '30px' }}
-            required
-            id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="initial">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-          <span style={{ color: 'red' }}>{messagePassword}</span>
         </div>
-        {/* <span style={{ color: 'red' }}>{messageError}</span> */}
 
         <Button
           color="primary"
@@ -145,14 +113,14 @@ const Cadastro = () => {
             width: '100%',
             color: 'white',
             // background: 'green',
-            marginTop: '70px',
+            marginTop: '100px',
             fontFamily: 'Poppins',
             fontSize: '20px',
           }}
           variant="contained"
-          onClick={() => handleClickSignUp()}
+          onClick={() => handleForgotPassword()}
         >
-          CADASTRAR
+          RECUPERAR SENHA
         </Button>
 
         <div
@@ -183,4 +151,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default ForgotPassword;
