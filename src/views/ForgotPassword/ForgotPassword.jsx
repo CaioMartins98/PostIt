@@ -26,8 +26,9 @@ const ForgotPassword = () => {
   const handleForgotPassword = () => {
     const { username } = values;
     if (username == '') return setMessageUser('Campo obrigatório*');
-    setModalForgotPassword(!modalForgotPassword);
+
     apiForgotPass({ username });
+    // setModalForgotPassword(!modalForgotPassword);
   };
 
   return (
@@ -97,7 +98,7 @@ const ForgotPassword = () => {
             </InputLabel>
             <Input
               style={{
-                background: '#DEDEDE',
+                background: '#ffff',
                 borderRadius: '4px',
                 width: '100%',
                 fontSize: '30px',

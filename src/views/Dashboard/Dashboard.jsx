@@ -59,37 +59,25 @@ const Dashboard = () => {
       )
       .then((response) => {
         if (response.status == 201 || response.status == 200) {
-          let newState = textPost;
           Feed();
-          // setTextPost((prevState) => {
-          //   prevState.map(() => {
-          //     if (prevState.id == reaction.feedId) {
-          //       prevState.activeUserLovedIt = reaction.love ? 1 : 0;
-          //       prevState.activeUserLikedIt = reaction.like ? 1 : 0;
-          //     }
-          //     return prevState;
-          //   });
-          // });
-
-          // newState.map((element) => {
-          //   if (element.id == reaction.feedId) {
-          //     element.activeUserLovedIt = reaction.love ? 1 : 0;
-          //     element.activeUserLikedIt = reaction.like ? 1 : 0;
-          //     if (reaction.love) {
-          //       element.activeUserLovedIt = 1
-          //     }
-          //     return element;
-          //   }
-          // return element;
-          // });
-          // setTextPost(newState);
+          //
         }
       });
   };
 
   useEffect(() => {
+    window.history.forward(1);
     Feed();
   }, []);
+
+  // function gerar_cor() {
+  //   return (
+  //     '#' +
+  //     parseInt(Math.random() * 0xffffff)
+  //       .toString(16)
+  //       .padStart(6, '0')
+  //   );
+  // }
 
   const handleTextValue = (text) => {
     setTextValue(text.target.value);
@@ -200,17 +188,18 @@ const Dashboard = () => {
                 <Grid
                   item
                   xs={11}
-                  sm={6}
-                  md={5}
+                  sm={9}
+                  md={6}
                   lg={3}
                   xl={3}
                   style={{
                     width: '200px',
                     height: '300px',
-                    borderRadius: '8px',
+                    borderBottomLeftRadius: '8px',
+                    borderBottomRightRadius: '8px',
                     marginTop: '16px',
                     boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
-                    background: '#f8f8f8',
+                    background: `#f8f8f8`,
                     // padding: 10,
                     margin: 5,
                   }}

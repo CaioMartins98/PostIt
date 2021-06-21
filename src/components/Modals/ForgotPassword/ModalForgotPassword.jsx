@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
-import apiForgotPass from '../../../service/api/apiForgotPass';
+import React, { useEffect, useState } from 'react';
+// import apiForgotPass from '../../../service/api/apiForgotPass';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import axios from 'axios';
 
 const ModalForgotPassword = (props) => {
   const { isOpen, toggle, className } = props;
+  const [password, setPassword] = useState('');
 
-  const apiLogin = ({ username }) => {
+  const apiForgotPass = ({ username }) => {
     const URL = 'https://segware-book-api.segware.io/api';
 
     axios
       .get(`${URL}/forgot-password/${username}`, {
         username: username,
       })
-      .then((res) => {
-        return res;
-      })
+      // .then((res) => {
+      //   return res;
+      // })
       .then((response) => {
         const senha = response.data.password;
+
         if (response.status == 200) {
-          return;
+          setPassword(senha);
         }
         return 'Usuário não existe, tente novamente!';
+      })
+      .catch((erro) => {
+        console.log(erro);
       });
   };
 
@@ -29,11 +34,7 @@ const ModalForgotPassword = (props) => {
     <div>
       <Modal isOpen={isOpen} className={className}>
         <ModalHeader>Recuperação de senha</ModalHeader>
-        <ModalBody>
-          {(response) =>
-            response.status == 200 ? 'Sua senha é:' : 'Usuário não existe, tente novamente!'
-          }
-        </ModalBody>
+        <ModalBody>Sua senha é: {password}</ModalBody>
         <ModalFooter>
           <Button
             style={style.buttonModal}

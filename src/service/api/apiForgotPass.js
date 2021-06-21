@@ -11,9 +11,10 @@ const apiLogin = ({ username }) => {
     })
     .then((response) => {
       if (response.status == 200) {
-        return response.data.password;
+        alert(`Sua senha é : ${response.data.password}`);
+        return (window.location.href = '/');
       }
-      return 'Usuário não existe, tente novamente!';
+      return alert('Usuário não existe, tente novamente!');
     });
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import apiCadastro from '../../service/api/apiCadastro';
+import ApiCadastro from '../../service/api/apiCadastro';
 //Material-UI
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
@@ -42,7 +42,7 @@ const Cadastro = () => {
     const { username, password } = values;
     if (username == '') return setMessageUser('Campo obrigatório*');
     if (password == '') return setMessagePassword('Campo obrigatório*');
-    apiCadastro({ username, password });
+    ApiCadastro({ username, password });
   };
 
   return (
@@ -111,7 +111,7 @@ const Cadastro = () => {
             </InputLabel>
             <Input
               style={{
-                background: '#DEDEDE',
+                background: '#ffff',
                 borderRadius: '4px',
                 width: '100%',
                 fontSize: '30px',
@@ -133,7 +133,7 @@ const Cadastro = () => {
 
             <Input
               style={{
-                background: '#DEDEDE',
+                background: '#ffffff',
                 borderRadius: '4px',
                 width: '100%',
                 marginTop: '16px',
@@ -197,7 +197,7 @@ const Cadastro = () => {
                 cursor: 'pointer',
               }}
               onClick={() => {
-                window.location.href = 'http://localhost:3000/';
+                window.location.href = '/';
               }}
             >
               <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />

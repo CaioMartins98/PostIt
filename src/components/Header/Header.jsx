@@ -19,7 +19,7 @@ const Header = () => {
           justifyContent: 'center',
           display: 'flex',
           width: '80vw',
-          boxShadow: '10px -1px 15px rgba(0, 0, 0, 0.5)',
+          boxShadow: '10px 0px 15px rgba(0, 0, 0, 0.5)',
         }}
       >
         <div

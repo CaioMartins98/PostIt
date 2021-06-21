@@ -15,12 +15,12 @@ const apiLogin = ({ username, password }) => {
     .then((response) => {
       if (response.status == 200) {
         alert('Usuário cadastrado com sucesso!');
-        return (window.location.href = 'http://localhost:3000/');
+        return (window.location.href = '/');
       }
     })
     .catch((err) => {
       if (err.status !== 200) {
-        return alert('Usuário ou senha errada, tente novamente!');
+        return alert('Usuário já cadastrado!');
       }
     });
 };

@@ -85,7 +85,7 @@ const HeaderDashboard = (props) => {
             cursor: 'pointer',
             marginRight: '10px',
           }}
-          onClick={() => (window.location.href = 'http://localhost:3000/')}
+          onClick={() => (localStorage.removeItem('token'), (window.location.href = '/'))}
         >
           Sair <DirectionsRunIcon fontSize="medium" />
         </h2>

@@ -16,7 +16,7 @@ const apiLogin = ({ username, password }) => {
       localStorage.setItem('token', response.data);
 
       if (response.status == 200) {
-        return (window.location.href = 'http://localhost:3000/dashboard');
+        return (window.location.href = '/dashboard');
       }
     })
     .catch((err) => {
