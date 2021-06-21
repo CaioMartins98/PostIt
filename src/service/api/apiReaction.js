@@ -21,7 +21,7 @@ const apiFeed = ({ feedId, like, love }) => {
       },
     )
     .then((response) => {
-      console.log(response);
+      return response;
       // if (response.status == 200) {
       //   alert(`Sua senha é : ${response.data.password}`);
       //   return (window.location.href = 'http://localhost:3000/');
@@ -29,7 +29,7 @@ const apiFeed = ({ feedId, like, love }) => {
       // alert('Usuário não existe, tente novamente!');
     })
     .catch((err) => {
-      console.log(err);
+      return err;
     });
 };
 

@@ -19,7 +19,6 @@ const apiLogin = ({ username, password }) => {
       }
     })
     .catch((err) => {
-      console.log(err.status);
       if (err.status !== 200) {
         return alert('Usuário ou senha errada, tente novamente!');
       }

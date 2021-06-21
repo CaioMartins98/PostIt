@@ -3,30 +3,46 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 const Header = () => {
   return (
-    <Grid
-      style={{
-        background: 'black',
-        color: 'white',
-        fontFamily: 'Pacifico',
-        fontSize: '40px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        display: 'flex',
-        width: '75vw',
-      }}
-    >
-      <div
+    <Grid container>
+      <Grid
+        item
+        xs={11}
+        sm={10}
+        md={10}
+        lg={10}
         style={{
-          justifyContent: 'space-between',
-          textAlign: 'center',
+          background: 'black',
+          color: 'white',
+          fontFamily: 'Pacifico',
+          fontSize: '40px',
+          alignItems: 'center',
+          justifyContent: 'center',
           display: 'flex',
-          fontSize: '100px',
+          width: '80vw',
+          boxShadow: '10px -1px 15px rgba(0, 0, 0, 0.5)',
         }}
       >
-        <h1>Post</h1>
+        <div
+          style={{
+            justifyContent: 'space-between',
+            textAlign: 'center',
+            display: 'flex',
+          }}
+        >
+          <h1 style={{ fontSize: '100px' }}>Post</h1>
 
-        <h1 style={{ marginLeft: '15px', color: '#3D4DDB' }}> It!</h1>
-      </div>
+          <h1
+            style={{
+              marginLeft: '15px',
+              color: '#3D4DDB',
+              fontSize: '100px',
+            }}
+          >
+            {' '}
+            It!
+          </h1>
+        </div>
+      </Grid>
     </Grid>
   );
 };

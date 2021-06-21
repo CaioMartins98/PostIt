@@ -1,4 +1,4 @@
-import { Container, GridList } from '@material-ui/core';
+import { Container, Grid, GridList } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import React, { useEffect, useState } from 'react';
 import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
@@ -6,16 +6,17 @@ import _ from 'lodash';
 import apiReaction from '../../service/api/apiReaction';
 import apiFeed from '../../service/api/apiFeed';
 import axios from 'axios';
-import loveOn from '../../assets/Reaction/loveOn.svg';
-import loveOff from '../../assets/Reaction/loveOff.svg';
+import loveOn from '../../assets/Reaction/loveOn.png';
+import loveOff from '../../assets/Reaction/loveOff.png';
+import likeOn from '../../assets/Reaction/likeOn.png';
+import likeOff from '../../assets/Reaction/likeOff.png';
+
 import SendIcon from '@material-ui/icons/Send';
 
 const Dashboard = () => {
   const [textValue, setTextValue] = useState('');
   const [textPost, setTextPost] = useState([]);
-  const [reaction, setReaction] = useState(false);
-  const [reactionLove, setReactionLove] = useState(false);
-  const [reactionLike, setReactionLike] = useState(false);
+  const [reaction, setReaction] = useState({});
 
   const Feed = () => {
     const URL = 'https://segware-book-api.segware.io/api';
@@ -32,33 +33,72 @@ const Dashboard = () => {
       })
       .then((data) => {
         setTextPost(data);
-        console.log('data', data);
+        return data;
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
+  };
 
-    console.log(textPost);
+  const React = (reaction) => {
+    const axios = require('axios');
+
+    const URL = 'https://segware-book-api.segware.io/api';
+
+    const token = localStorage.getItem('token');
+    axios
+      .post(
+        `${URL}/reaction`,
+
+        reaction,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((response) => {
+        if (response.status == 201 || response.status == 200) {
+          let newState = textPost;
+          Feed();
+          // setTextPost((prevState) => {
+          //   prevState.map(() => {
+          //     if (prevState.id == reaction.feedId) {
+          //       prevState.activeUserLovedIt = reaction.love ? 1 : 0;
+          //       prevState.activeUserLikedIt = reaction.like ? 1 : 0;
+          //     }
+          //     return prevState;
+          //   });
+          // });
+
+          // newState.map((element) => {
+          //   if (element.id == reaction.feedId) {
+          //     element.activeUserLovedIt = reaction.love ? 1 : 0;
+          //     element.activeUserLikedIt = reaction.like ? 1 : 0;
+          //     if (reaction.love) {
+          //       element.activeUserLovedIt = 1
+          //     }
+          //     return element;
+          //   }
+          // return element;
+          // });
+          // setTextPost(newState);
+        }
+      });
   };
 
   useEffect(() => {
     Feed();
   }, []);
 
-  // useEffect(() => {
-  //   apiReaction(reactionLove, reactionLike);
-  // }, [reaction]);
-
   const handleTextValue = (text) => {
     setTextValue(text.target.value);
-    console.log(text.target.value);
   };
 
   const handleClick = () => {
     if (!textValue) return;
 
     const content = textValue;
-    console.log('content', content);
 
     apiFeed({ content: content });
 
@@ -67,10 +107,28 @@ const Dashboard = () => {
     }, 1000);
   };
 
+  const handleReaction = (idFeed, like, love) => {
+    const feedReaction = {
+      feedId: idFeed,
+      like: like,
+      love: love,
+    };
+    React(feedReaction);
+  };
   return (
     <div>
       <HeaderDashboard />
-      <Container cellHeight={160} cols={3} style={{ height: '100vh' }}>
+      <Container
+        cellHeight={160}
+        cols={3}
+        style={{
+          height: '100vh',
+          width: '100vw',
+          display: 'inline',
+          justifyContent: 'center',
+          alingItems: 'center',
+        }}
+      >
         <div
           style={{
             marginTop: '2vh',
@@ -93,8 +151,8 @@ const Dashboard = () => {
             style={{
               fontFamily: 'Poppins',
               width: '500px',
-              minWidth: '490px',
-              maxWidth: '490px',
+              minWidth: '450px',
+              maxWidth: '450px',
               minHeight: '100px',
               maxHeight: '100px',
               fontSize: '20px',
@@ -130,66 +188,97 @@ const Dashboard = () => {
 
         <div
           style={{
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
+            width: '100vw',
           }}
         >
-          <div
-            style={{
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'flow-root',
-            }}
+          <Grid
+            container
+            style={{ alingItems: 'center', justifyContent: 'center', display: 'flex' }}
           >
             {textPost &&
               textPost.map((item, index) => (
-                <div
+                <Grid
+                  item
+                  xs={11}
+                  sm={6}
+                  md={5}
+                  lg={3}
+                  xl={3}
                   style={{
-                    borderLeft: '1px solid #DEDEDE',
-                    borderTop: '1px solid #DEDEDE',
-                    width: '500px',
-                    height: '250px',
+                    width: '200px',
+                    height: '300px',
                     borderRadius: '8px',
                     marginTop: '16px',
                     boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
+                    background: '#f8f8f8',
+                    // padding: 10,
+                    margin: 5,
                   }}
                 >
                   <div
                     style={{
-                      width: '500px',
-                      height: '450px',
+                      width: '450px',
+                      height: '500px',
                       borderRadius: '8px',
                       alingItems: 'center',
-                      justifyContent: 'center',
+                      justifyContent: 'space-between',
                       display: 'flex',
                       marginTop: '15px',
+
+                      textAlign: 'start',
+                      textOverflow: 'unset',
                     }}
                   >
-                    <p
+                    <div>
+                      <p
+                        style={{
+                          maxWidth: '500px',
+                          maxHeight: '250px',
+                          fontFamily: 'Poppins',
+                          marginTop: '8px',
+                          marginLeft: '8px',
+                          padding: 10,
+                        }}
+                      >
+                        {item.content}
+                      </p>
+                    </div>
+                    <div
                       style={{
-                        maxWidth: '500px',
-                        maxHeight: '250px',
-                        fontFamily: 'Poppins',
-                        marginTop: '15px',
+                        marginTop: '8px',
                       }}
                     >
-                      {item.content}
-                    </p>
+                      <span
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          handleReaction(item.id, item.activeUserLikedIt, !item.activeUserLovedIt)
+                        }
+                      >
+                        {item.activeUserLovedIt > 0 ? (
+                          <img style={{ width: '30px', height: '30px' }} src={loveOn} alt="" />
+                        ) : (
+                          <img style={{ width: '30px', height: '30px' }} src={loveOff} alt="" />
+                        )}
+                      </span>
+                      <p style={{ fontFamily: 'Poppins' }}>{item.loves}</p>
+                      <span
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          handleReaction(item.id, !item.activeUserLikedIt, item.activeUserLovedIt)
+                        }
+                      >
+                        {item.activeUserLikedIt > 0 ? (
+                          <img style={{ width: '30px', height: '30px' }} src={likeOn} alt="" />
+                        ) : (
+                          <img style={{ width: '30px', height: '30px' }} src={likeOff} alt="" />
+                        )}
+                      </span>
+                      <p style={{ fontFamily: 'Poppins' }}>{item.likes}</p>
+                    </div>
                   </div>
-                  <span
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setReactionLove(!reactionLove)}
-                  >
-                    {reactionLove && reactionLove > 0 ? (
-                      <img style={{ width: '30px', height: '30px' }} src={loveOff} alt="" />
-                    ) : (
-                      <img style={{ width: '30px', height: '30px' }} src={loveOn} alt="" />
-                    )}
-                  </span>
-                </div>
+                </Grid>
               ))}
-          </div>
+          </Grid>
         </div>
       </Container>
     </div>

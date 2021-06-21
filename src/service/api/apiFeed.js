@@ -18,17 +18,10 @@ const apiFeed = ({ content }) => {
       },
     )
     .then((response) => {
-      console.log(response);
-      console.log(token);
-
-      // if (response.status == 200) {
-      //   alert(`Sua senha é : ${response.data.password}`);
-      //   return (window.location.href = 'http://localhost:3000/');
-      // }
-      // alert('Usuário não existe, tente novamente!');
+      return response;
     })
     .catch((err) => {
-      console.log(err);
+      return err;
     });
 };
 

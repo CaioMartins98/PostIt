@@ -19,7 +19,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 //Styled-Components
 import { ContainerLink } from './styles';
 import Container from '@material-ui/core/Container';
-import { Link } from '@material-ui/core';
+import { Grid, Link } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import Header from '../../components/Header/Header';
 // import styled from "styled-components";
@@ -62,135 +62,143 @@ function LoginScreen(props) {
       }}
     >
       <Header />
-
-      <Container
-        style={{
-          color: 'white',
-          fontFamily: 'Poppins',
-          width: '40vw',
-          marginTop: '15vh',
-          maxWidth: '40vw',
-        }}
-      >
-        <h1
+      <Grid container style={{ display: 'flex', alingItems: 'center', justifyContent: 'center' }}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
           style={{
-            color: 'black',
+            color: 'white',
             fontFamily: 'Poppins',
-            fontSize: '40px',
-            fontWeight: '700',
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
+            width: '30vw',
+            marginTop: '15vh',
+            minWidth: '20vw',
+            marginLeft: '-10vw',
+            height: '600px',
           }}
         >
-          {' '}
-          Bem-Vindo!
-        </h1>
-        <div
-          style={{
-            width: '100%',
-          }}
-        >
-          <InputLabel style={{ marginTop: '100px', fontSize: '25px' }}>Nome</InputLabel>
-          <Input
-            style={{ width: '100%', fontSize: '30px', marginBottom: '12px' }}
-            required
-            value={values.username}
-            onChange={handleChange('username')}
-          />
-          <span style={{ color: 'red' }}>{messageUser}</span>
-
-          <InputLabel
-            style={{ marginTop: '30px', fontSize: '25px' }}
-            htmlFor="standard-adornment-password"
-          >
-            Senha
-          </InputLabel>
-
-          <Input
-            style={{ width: '100%', marginBottom: '12px', fontSize: '30px' }}
-            required
-            id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="initial">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-          <span style={{ color: 'red' }}>{messagePassword}</span>
-        </div>
-
-        <Button
-          style={{
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            width: '100%',
-
-            marginTop: '50px',
-            fontFamily: 'Poppins',
-            fontSize: '20px',
-          }}
-          variant="contained"
-          color="primary"
-          onClick={() => handleClickLogin()}
-        >
-          ENTRAR
-        </Button>
-
-        <div
-          style={{
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            marginTop: '25px',
-            marginBottom: '36px',
-            fontSize: '25px',
-          }}
-        >
-          <Link
+          <h1
             style={{
-              outline: 'none',
-
-              cursor: 'pointer',
-            }}
-            onClick={() => {
-              window.location.href = 'http://localhost:3000/cadastro';
+              color: 'black',
+              fontFamily: 'Poppins',
+              fontSize: '40px',
+              fontWeight: '700',
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
             }}
           >
-            Cadastre-se
-          </Link>
-        </div>
-        <div
-          style={{
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            fontSize: '18px',
-          }}
-        >
-          <Link
+            {' '}
+            Bem-Vindo!
+          </h1>
+          <div
             style={{
-              marginTop: '0px',
-
-              cursor: 'pointer',
-            }}
-            onClick={() => {
-              window.location.href = 'http://localhost:3000/recuperar-senha';
+              width: '100%',
             }}
           >
-            Esqueci minha senha
-          </Link>
-        </div>
-      </Container>
+            <InputLabel style={{ marginTop: '100px', fontSize: '25px' }}>Nome</InputLabel>
+            <Input
+              style={{ width: '100%', fontSize: '30px', marginBottom: '12px' }}
+              required
+              value={values.username}
+              onChange={handleChange('username')}
+            />
+            <span style={{ color: 'red' }}>{messageUser}</span>
+
+            <InputLabel
+              style={{ marginTop: '30px', fontSize: '25px' }}
+              htmlFor="standard-adornment-password"
+            >
+              Senha
+            </InputLabel>
+
+            <Input
+              style={{ width: '100%', marginBottom: '12px', fontSize: '30px' }}
+              required
+              id="standard-adornment-password"
+              type={values.showPassword ? 'text' : 'password'}
+              value={values.password}
+              onChange={handleChange('password')}
+              endAdornment={
+                <InputAdornment position="initial">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            <span style={{ color: 'red' }}>{messagePassword}</span>
+          </div>
+
+          <Button
+            style={{
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              width: '100%',
+
+              marginTop: '50px',
+              fontFamily: 'Poppins',
+              fontSize: '20px',
+            }}
+            variant="contained"
+            color="primary"
+            onClick={() => handleClickLogin()}
+          >
+            ENTRAR
+          </Button>
+
+          <div
+            style={{
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              marginTop: '25px',
+              marginBottom: '36px',
+              fontSize: '25px',
+            }}
+          >
+            <Link
+              style={{
+                outline: 'none',
+
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                window.location.href = '/cadastro';
+              }}
+            >
+              Cadastre-se
+            </Link>
+          </div>
+          <div
+            style={{
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              fontSize: '18px',
+            }}
+          >
+            <Link
+              style={{
+                marginTop: '0px',
+
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                window.location.href = '/recuperar-senha';
+              }}
+            >
+              Esqueci minha senha
+            </Link>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
 }

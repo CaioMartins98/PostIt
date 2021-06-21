@@ -14,10 +14,10 @@ const apiFeeds = () => {
       return response.data;
     })
     .then((data) => {
-      console.log('data', data);
+      return 'data', data;
     })
     .catch((err) => {
-      console.log(err);
+      return err;
     });
 };
 

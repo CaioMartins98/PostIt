@@ -13,8 +13,9 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 //Styled-Components
-import { Button, Container, Icon } from '@material-ui/core';
+import { Button, Container, Grid, Icon } from '@material-ui/core';
 import { Link } from '@material-ui/core';
+import { BorderRight } from '@material-ui/icons';
 
 const Cadastro = () => {
   const [values, setValues] = useState({
@@ -58,127 +59,153 @@ const Cadastro = () => {
           justifyContent: 'center',
           textAlign: 'center',
           display: 'flex',
-          fontSize: '90px',
+
           fontFamily: 'Pacifico',
         }}
       >
-        <h1 style={{ marginTop: '15px', color: 'white' }}>Post</h1>
+        <h1 style={{ fontSize: '100px', marginTop: '15px', color: 'white' }}>Post</h1>
 
-        <h1 style={{ marginLeft: '15px', marginTop: '15px', color: '#3D4DDB' }}> It!</h1>
-      </div>
-      <Container
-        style={{
-          background: '#f1f1f1',
-          borderRadius: '8px',
-          color: 'white',
-          fontFamily: 'Poppins',
-          width: '35vw',
-          height: '70vh',
-          marginTop: '55px',
-        }}
-      >
-        <h1
-          style={{
-            color: 'black',
-            fontFamily: 'Poppins',
-            fontSize: '40px',
-            fontWeight: '700',
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'grid',
-            paddingTop: 30,
-          }}
-        >
+        <h1 style={{ fontSize: '100px', marginLeft: '15px', marginTop: '15px', color: '#3D4DDB' }}>
           {' '}
-          Cadastro
+          It!
         </h1>
-        <div
+      </div>
+      <Grid container style={{ display: 'flex', alingItems: 'center', justifyContent: 'center' }}>
+        <Grid
+          item
+          xs={11}
+          sm={10}
+          md={8}
+          lg={3}
           style={{
-            width: '100%',
-          }}
-        >
-          <InputLabel style={{ marginTop: '70px', fontSize: '25px' }}>Nome</InputLabel>
-          <Input
-            style={{ width: '100%', fontSize: '30px', marginBottom: '12px' }}
-            required
-            value={values.username}
-            onChange={handleChange('username')}
-          />
-          <span style={{ color: 'red' }}>{messageUser}</span>
-
-          <InputLabel
-            style={{ marginTop: '30px', fontSize: '25px' }}
-            htmlFor="standard-adornment-password"
-          >
-            Senha
-          </InputLabel>
-
-          <Input
-            style={{ width: '100%', marginBottom: '12px', fontSize: '30px' }}
-            required
-            id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="initial">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-          <span style={{ color: 'red' }}>{messagePassword}</span>
-        </div>
-        {/* <span style={{ color: 'red' }}>{messageError}</span> */}
-
-        <Button
-          color="primary"
-          style={{
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            width: '100%',
+            borderRadius: '8px',
             color: 'white',
-            // background: 'green',
-            marginTop: '70px',
             fontFamily: 'Poppins',
-            fontSize: '20px',
-          }}
-          variant="contained"
-          onClick={() => handleClickSignUp()}
-        >
-          CADASTRAR
-        </Button>
-
-        <div
-          style={{
-            color: 'gray',
-            alingItems: 'center',
-            justifyContent: 'center',
-            display: 'flex',
-            marginTop: '50px',
-            marginBottom: '36px',
-            fontSize: '25px',
+            width: '35vw',
+            height: '70vh',
+            marginTop: '55px',
           }}
         >
-          <h3
+          <h1
             style={{
-              cursor: 'pointer',
-            }}
-            onClick={() => {
-              window.location.href = 'http://localhost:3000/';
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontSize: '40px',
+              fontWeight: '700',
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'grid',
+              paddingTop: 30,
             }}
           >
-            <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />
-            Voltar
-          </h3>
-        </div>
-      </Container>
+            {' '}
+            Cadastro
+          </h1>
+          <div
+            style={{
+              width: '100%',
+            }}
+          >
+            <InputLabel style={{ marginTop: '70px', fontSize: '25px', color: 'white' }}>
+              Nome
+            </InputLabel>
+            <Input
+              style={{
+                background: '#DEDEDE',
+                borderRadius: '4px',
+                width: '100%',
+                fontSize: '30px',
+                marginTop: '16px',
+                marginBottom: '12px',
+              }}
+              required
+              value={values.username}
+              onChange={handleChange('username')}
+            />
+            <span style={{ color: 'red' }}>{messageUser}</span>
+
+            <InputLabel
+              style={{ marginTop: '30px', fontSize: '25px', color: 'white' }}
+              htmlFor="standard-adornment-password"
+            >
+              Senha
+            </InputLabel>
+
+            <Input
+              style={{
+                background: '#DEDEDE',
+                borderRadius: '4px',
+                width: '100%',
+                marginTop: '16px',
+                marginBottom: '12px',
+                fontSize: '30px',
+              }}
+              required
+              id="standard-adornment-password"
+              type={values.showPassword ? 'text' : 'password'}
+              value={values.password}
+              onChange={handleChange('password')}
+              endAdornment={
+                <InputAdornment position="initial">
+                  <IconButton
+                    style={{ color: '#4e4e4e' }}
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            <span style={{ color: 'red' }}>{messagePassword}</span>
+          </div>
+          {/* <span style={{ color: 'red' }}>{messageError}</span> */}
+
+          <Button
+            color="primary"
+            style={{
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              width: '100%',
+              color: 'white',
+              // background: 'green',
+              marginTop: '70px',
+              fontFamily: 'Poppins',
+              fontSize: '20px',
+            }}
+            variant="contained"
+            onClick={() => handleClickSignUp()}
+          >
+            CADASTRAR
+          </Button>
+
+          <div
+            style={{
+              color: 'gray',
+              alingItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              marginTop: '50px',
+              marginBottom: '36px',
+              fontSize: '25px',
+            }}
+          >
+            <h3
+              style={{
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                window.location.href = 'http://localhost:3000/';
+              }}
+            >
+              <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />
+              Voltar
+            </h3>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
 };
