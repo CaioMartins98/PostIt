@@ -70,14 +70,14 @@ const Dashboard = () => {
     Feed();
   }, []);
 
-  // function gerar_cor() {
-  //   return (
-  //     '#' +
-  //     parseInt(Math.random() * 0xffffff)
-  //       .toString(16)
-  //       .padStart(6, '0')
-  //   );
-  // }
+  function gerar_cor() {
+    return (
+      '#' +
+      parseInt(Math.random() * 0xffffff)
+        .toString(16)
+        .padStart(6, '0')
+    );
+  }
 
   const handleTextValue = (text) => {
     setTextValue(text.target.value);
@@ -136,6 +136,7 @@ const Dashboard = () => {
           }}
         >
           <textarea
+            maxLength={200}
             style={{
               fontFamily: 'Poppins',
               width: '500px',
@@ -144,13 +145,14 @@ const Dashboard = () => {
               minHeight: '100px',
               maxHeight: '100px',
               fontSize: '20px',
-              borderTopLeftRadius: '8px',
-              borderBottomLeftRadius: '8px',
+              borderTopLeftRadius: '4px',
+              borderBottomLeftRadius: '4px',
               outline: 'none',
+              marginBottom: '20px',
             }}
             aria-label="minimum height"
             rowsMax={15}
-            placeholder="Digite seu texto aqui!"
+            placeholder="Digite seu texto aqui..."
             value={textValue}
             onChange={(event) => handleTextValue(event)}
           />
@@ -160,10 +162,8 @@ const Dashboard = () => {
               fontFamily: 'Poppins',
               fontWeight: '700',
               color: ' white',
-              background: '#115714dd',
-              border: 'none',
-              borderTopRightRadius: '8px',
-              borderBottomRightRadius: '8px',
+              background: '#3D4DDB',
+              marginBottom: '20px',
               borderTopLeftRadius: '0px',
               borderBottomLeftRadius: '0px',
               outline: 'none',
@@ -193,11 +193,12 @@ const Dashboard = () => {
                   lg={3}
                   xl={3}
                   style={{
+                    border: `3px solid ${gerar_cor()}`,
                     width: '200px',
                     height: '300px',
-                    borderBottomLeftRadius: '8px',
-                    borderBottomRightRadius: '8px',
-                    marginTop: '16px',
+                    borderRadius: '8px',
+
+                    marginTop: '26px',
                     boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
                     background: `#f8f8f8`,
                     // padding: 10,
@@ -207,23 +208,28 @@ const Dashboard = () => {
                   <div
                     style={{
                       width: '450px',
+                      maxWidth: '450px',
                       height: '500px',
                       borderRadius: '8px',
                       alingItems: 'center',
                       justifyContent: 'space-between',
                       display: 'flex',
                       marginTop: '15px',
-
-                      textAlign: 'start',
-                      textOverflow: 'unset',
+                      wordWrap: 'break-word',
                     }}
                   >
-                    <div>
+                    <div
+                      style={{
+                        width: '420px',
+
+                        height: '180px',
+                        wordWrap: 'break-word',
+                      }}
+                    >
                       <p
                         style={{
-                          maxWidth: '500px',
-                          maxHeight: '250px',
                           fontFamily: 'Poppins',
+                          fontSize: '1rem',
                           marginTop: '8px',
                           marginLeft: '8px',
                           padding: 10,

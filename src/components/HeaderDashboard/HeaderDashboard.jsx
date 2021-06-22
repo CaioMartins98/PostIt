@@ -47,13 +47,13 @@ const HeaderDashboard = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar style={{ background: 'black' }}>
+      <AppBar position="fixed">
+        <Toolbar style={{ background: 'black', height: '90px' }}>
           <Typography style={{ fontFamily: 'Pacifico' }} variant="h4" className={classes.title}>
-            <img style={{ height: '50px' }} src={title} alt="title" />
+            <img style={{ height: '60px' }} src={title} alt="title" />
           </Typography>
           <Button
-            style={{ background: 'black', cursor: 'pointer', border: 'none' }}
+            style={{ background: 'black', cursor: 'pointer', border: 'none', position: 'relative' }}
             onClick={handleOpen}
             color="inherit"
           >
