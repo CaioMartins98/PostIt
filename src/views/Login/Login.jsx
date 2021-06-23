@@ -22,6 +22,7 @@ import Container from '@material-ui/core/Container';
 import { Grid, Link } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import Header from '../../components/Header/Header';
+import { useHistory } from 'react-router-dom';
 // import styled from "styled-components";
 function LoginScreen(props) {
   const [messagePassword, setMessagePassword] = useState('');
@@ -33,23 +34,39 @@ function LoginScreen(props) {
     showPassword: false,
   });
 
+  const history = useHistory();
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleClickLogin = async () => {
     const { username, password } = values;
-    if (username == '') return setMessageUser('Campo obrigatório*');
-    if (password == '') return setMessagePassword('Campo obrigatório*');
+    setValues({ ...values, [prop]: event.target.value });
 
-    apiLogin({ username, password });
+    if (username) setMessageUser(!messageUser);
+
+    if (password) setMessagePassword('');
   };
 
-  // const preventDefault = (event) => event.preventDefault();
+  const validate = () => {
+    const { username, password } = values;
+    apiLogin({ username, password });
+
+    if (username == '' || username == undefined || username == null) {
+      setMessageUser('Campo de usuário obrigatório*');
+    }
+    if (password == '' || password == undefined || password == null) {
+      setMessagePassword('Campo de senha obrigatório*');
+    }
+
+    return;
+  };
+
+  useEffect(() => {
+    window.history.forward();
+  }, []);
+
   return (
     <div
       style={{
@@ -99,21 +116,21 @@ function LoginScreen(props) {
             }}
           >
             <InputLabel style={{ marginTop: '100px', fontSize: '25px' }}>Nome</InputLabel>
+
             <Input
               style={{ width: '100%', fontSize: '30px', marginBottom: '12px' }}
               required
               value={values.username}
               onChange={handleChange('username')}
             />
-            <span style={{ color: 'red' }}>{messageUser}</span>
 
+            <span style={{ color: 'red' }}>{messageUser}</span>
             <InputLabel
               style={{ marginTop: '30px', fontSize: '25px' }}
               htmlFor="standard-adornment-password"
             >
               Senha
             </InputLabel>
-
             <Input
               style={{ width: '100%', marginBottom: '12px', fontSize: '30px' }}
               required
@@ -148,7 +165,7 @@ function LoginScreen(props) {
             }}
             variant="contained"
             color="primary"
-            onClick={() => handleClickLogin()}
+            onClick={() => validate()}
           >
             ENTRAR
           </Button>

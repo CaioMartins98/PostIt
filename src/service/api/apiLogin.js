@@ -18,11 +18,6 @@ const apiLogin = ({ username, password }) => {
       if (response.status == 200) {
         return (window.location.href = '/dashboard');
       }
-    })
-    .catch((err) => {
-      if (err.status !== 200) {
-        return alert('Usuário ou senha errada, tente novamente!');
-      }
     });
 };
 

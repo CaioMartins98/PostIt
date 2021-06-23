@@ -1,0 +1,6 @@
+{
+  "setupFiles": ["raf/polyfill", "<rootDir>/src/setupTests.js"],
+  "transform": {
+    "^.+\\.(js?)$": "babel-jest"
+  }
+}

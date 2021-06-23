@@ -66,7 +66,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    window.history.forward(1);
+    window.history.forward(0);
     Feed();
   }, []);
 
@@ -104,7 +104,7 @@ const Dashboard = () => {
     React(feedReaction);
   };
   return (
-    <div>
+    <div style={{ background: '#E6E6E6' }}>
       <HeaderDashboard />
       <Container
         cellHeight={160}
@@ -127,7 +127,8 @@ const Dashboard = () => {
         >
           <label style={{ fontFamily: 'Poppins', fontSize: '30px' }}>Escreva seu texto</label>
         </div>
-        <div
+        <Grid
+          container
           style={{
             marginTop: '2vh',
             display: 'flex',
@@ -135,44 +136,57 @@ const Dashboard = () => {
             alingItems: 'center',
           }}
         >
-          <textarea
-            maxLength={200}
+          <Grid
+            item
+            xs={12}
+            sm={9}
+            md={6}
+            lg={3}
+            xl={3}
             style={{
-              fontFamily: 'Poppins',
-              width: '500px',
-              minWidth: '450px',
-              maxWidth: '450px',
-              minHeight: '100px',
-              maxHeight: '100px',
-              fontSize: '20px',
-              borderTopLeftRadius: '4px',
-              borderBottomLeftRadius: '4px',
-              outline: 'none',
-              marginBottom: '20px',
+              marginTop: '2vh',
+              display: 'flex',
             }}
-            aria-label="minimum height"
-            rowsMax={15}
-            placeholder="Digite seu texto aqui..."
-            value={textValue}
-            onChange={(event) => handleTextValue(event)}
-          />
-          <Button
-            style={{
-              cursor: 'pointer',
-              fontFamily: 'Poppins',
-              fontWeight: '700',
-              color: ' white',
-              background: '#3D4DDB',
-              marginBottom: '20px',
-              borderTopLeftRadius: '0px',
-              borderBottomLeftRadius: '0px',
-              outline: 'none',
-            }}
-            onClick={() => handleClick()}
           >
-            <SendIcon />
-          </Button>
-        </div>
+            <textarea
+              maxLength={200}
+              style={{
+                fontFamily: 'Poppins',
+                width: '500px',
+                minWidth: '450px',
+                maxWidth: '450px',
+                minHeight: '100px',
+                maxHeight: '100px',
+                fontSize: '20px',
+                borderTopLeftRadius: '4px',
+                borderBottomLeftRadius: '4px',
+                outline: 'none',
+                marginBottom: '20px',
+              }}
+              aria-label="minimum height"
+              rowsMax={15}
+              placeholder="Digite seu texto aqui..."
+              value={textValue}
+              onChange={(event) => handleTextValue(event)}
+            />
+            <Button
+              style={{
+                cursor: 'pointer',
+                fontFamily: 'Poppins',
+                fontWeight: '700',
+                color: ' white',
+                background: '#3D4DDB',
+                marginBottom: '20px',
+                borderTopLeftRadius: '0px',
+                borderBottomLeftRadius: '0px',
+                outline: 'none',
+              }}
+              onClick={() => handleClick()}
+            >
+              <SendIcon />
+            </Button>
+          </Grid>
+        </Grid>
 
         <div
           style={{
@@ -188,42 +202,48 @@ const Dashboard = () => {
                 <Grid
                   item
                   xs={11}
-                  sm={9}
+                  sm={10}
                   md={6}
                   lg={3}
                   xl={3}
                   style={{
-                    border: `3px solid ${gerar_cor()}`,
+                    border: `3px solid #3D4DDB`,
                     width: '200px',
                     height: '300px',
                     borderRadius: '8px',
 
                     marginTop: '26px',
                     boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
-                    background: `#f8f8f8`,
+                    background: `WHITE`,
                     // padding: 10,
                     margin: 5,
                   }}
                 >
-                  <div
+                  <Grid
                     style={{
                       width: '450px',
                       maxWidth: '450px',
                       height: '500px',
                       borderRadius: '8px',
-                      alingItems: 'center',
-                      justifyContent: 'space-between',
-                      display: 'flex',
+                      // alingItems: 'center',
+                      // justifyContent: 'flex',
+                      // display: 'flex',
                       marginTop: '15px',
                       wordWrap: 'break-word',
                     }}
                   >
-                    <div
+                    <Grid
+                      item
+                      xs={12}
+                      sm={12}
+                      md={12}
+                      lg={12}
+                      xl={12}
                       style={{
-                        width: '420px',
+                        width: '26.25rem',
 
                         height: '180px',
-                        wordWrap: 'break-word',
+                        // wordWrap: 'break-word',
                       }}
                     >
                       <p
@@ -237,14 +257,20 @@ const Dashboard = () => {
                       >
                         {item.content}
                       </p>
-                    </div>
+                    </Grid>
                     <div
                       style={{
-                        marginTop: '8px',
+                        width: '30px',
+                        display: 'flex',
+                        alignItems: 'center',
+
+                        heigth: '10px',
+                        marginLeft: '10px',
+                        marginTop: '52px',
                       }}
                     >
                       <span
-                        style={{ cursor: 'pointer' }}
+                        style={{ cursor: 'pointer', marginRight: '4px' }}
                         onClick={() =>
                           handleReaction(item.id, item.activeUserLikedIt, !item.activeUserLovedIt)
                         }
@@ -255,7 +281,7 @@ const Dashboard = () => {
                           <img style={{ width: '30px', height: '30px' }} src={loveOff} alt="" />
                         )}
                       </span>
-                      <p style={{ fontFamily: 'Poppins' }}>{item.loves}</p>
+                      <p style={{ fontFamily: 'Poppins', marginRight: '10px' }}>{item.loves}</p>
                       <span
                         style={{ cursor: 'pointer' }}
                         onClick={() =>
@@ -270,7 +296,7 @@ const Dashboard = () => {
                       </span>
                       <p style={{ fontFamily: 'Poppins' }}>{item.likes}</p>
                     </div>
-                  </div>
+                  </Grid>
                 </Grid>
               ))}
           </Grid>
