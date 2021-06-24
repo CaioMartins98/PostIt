@@ -38,4 +38,4 @@
 
 ##### Teste:
 - [x] React Testing Libary
-  Para executar o teste, basta dar 'yarn test' no terminal
+- Para executar o teste, basta dar 'yarn test' no terminal
