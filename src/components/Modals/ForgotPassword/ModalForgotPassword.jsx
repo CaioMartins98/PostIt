@@ -7,11 +7,11 @@ const ModalForgotPassword = (props) => {
 
   return (
     <div>
-      <Modal toggle={toggle} size="sm" isOpen={isOpen} className={className}>
+      <Modal size="sm" isOpen={isOpen} className={className}>
         <ModalHeader>Recuperação de senha</ModalHeader>
         <ModalBody>{message}</ModalBody>
         <ModalFooter>
-          {url && (
+          {url ? (
             <Button
               style={style.buttonModal}
               color="success"
@@ -19,6 +19,10 @@ const ModalForgotPassword = (props) => {
                 window.location.href = '/';
               }}
             >
+              Confirmar
+            </Button>
+          ) : (
+            <Button style={style.buttonModal} color="success" onClick={toggle}>
               Confirmar
             </Button>
           )}

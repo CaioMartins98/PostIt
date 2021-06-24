@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import apiLogin from '../../service/api/apiLogin';
+import ModalLogin from '../../components/Modals/Login/ModalLogin';
+
 //Material-UI
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
@@ -11,19 +12,41 @@ import { Grid, Link } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import Header from '../../components/Header/Header';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 // import styled from "styled-components";
 function LoginScreen(props) {
   const [messagePassword, setMessagePassword] = useState('');
   const [messageUser, setMessageUser] = useState('');
-  const [messageError, setMessageError] = useState('');
+  const [message, setMessage] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+
   const [values, setValues] = useState({
     username: '',
     password: '',
     showPassword: false,
   });
 
-  const history = useHistory();
+  const apiLogin = (username, password) => {
+    const URL = 'https://segware-book-api.segware.io/api';
+
+    axios
+      .post(`${URL}/sign-in`, {
+        username,
+        password,
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.data);
+
+        if (response.status == 200) {
+          return (window.location.href = '/dashboard');
+        }
+      })
+      .catch(() => {
+        setMessage('Insira um usuário válido!');
+        setOpenModal(true);
+      });
+  };
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
@@ -35,21 +58,23 @@ function LoginScreen(props) {
 
     if (username) setMessageUser(!messageUser);
 
-    if (password) setMessagePassword('');
+    if (password) setMessagePassword(!messagePassword);
   };
 
   const validate = () => {
     const { username, password } = values;
-    apiLogin({ username, password });
 
-    if (username == '' || username == undefined || username == null) {
+    if (username == '' && password === '') {
       setMessageUser('Campo de usuário obrigatório*');
-    }
-    if (password == '' || password == undefined || password == null) {
       setMessagePassword('Campo de senha obrigatório*');
+      return;
+    } else if (username == '') {
+      return setMessageUser('Campo de usuário obrigatório*');
+    } else if (password == '') {
+      return setMessagePassword('Campo de senha obrigatório*');
+    } else {
+      apiLogin(username, password);
     }
-
-    return;
   };
 
   return (
@@ -206,6 +231,14 @@ function LoginScreen(props) {
           </div>
         </Grid>
       </Grid>
+
+      <ModalLogin
+        username={values.username}
+        password={values.password}
+        isOpen={openModal}
+        message={message}
+        toggle={() => setOpenModal(!openModal)}
+      />
     </div>
   );
 }
