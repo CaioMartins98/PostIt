@@ -69,7 +69,7 @@ const Cadastro = () => {
         }
       })
       .catch(() => {
-        setMessage('Falha ao cadastrar usuário, tente novamente!');
+        setMessage('Nome do usuário inválido ou já existe!');
         setOpenModal(true);
         setUrl(false);
       });
