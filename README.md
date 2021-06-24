@@ -8,7 +8,7 @@
 
 ![image](https://user-images.githubusercontent.com/75040066/122695623-4fcf5280-d217-11eb-8b0d-7c03c1f64f28.png)
 
-![image](https://user-images.githubusercontent.com/75040066/122695645-64abe600-d217-11eb-8786-60b58e574396.png)
+![image](https://user-images.githubusercontent.com/75040066/123261228-db253e00-d4cc-11eb-9c92-c8bf41a387ef.png)
 
 # ⚙ Funcionalidades
 - [x] Login
