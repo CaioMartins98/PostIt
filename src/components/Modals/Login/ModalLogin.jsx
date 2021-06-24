@@ -7,12 +7,12 @@ const ModalForgotPassword = (props) => {
 
   return (
     <div>
-      <Modal toggle={toggle} size="sm" isOpen={isOpen}>
+      <Modal size="sm" isOpen={isOpen} style={{ fontFamily: 'Poppins' }}>
         <ModalHeader>Login</ModalHeader>
         <ModalBody>{message}</ModalBody>
         <ModalFooter>
-          <Button style={style.buttonModal} color="success" onClick={toggle}>
-            Confirmar
+          <Button size="sm" style={style.buttonModal} color="primary" onClick={toggle}>
+            OK
           </Button>
         </ModalFooter>
       </Modal>

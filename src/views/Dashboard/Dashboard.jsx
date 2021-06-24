@@ -10,13 +10,13 @@ import loveOn from '../../assets/Reaction/loveOn.png';
 import loveOff from '../../assets/Reaction/loveOff.png';
 import likeOn from '../../assets/Reaction/likeOn.png';
 import likeOff from '../../assets/Reaction/likeOff.png';
-
-import SendIcon from '@material-ui/icons/Send';
+import PersonIcon from '@material-ui/icons/Person';
+import calendar from '../../assets/calendar.png';
+import moment from 'moment';
 
 const Dashboard = () => {
   const [textValue, setTextValue] = useState('');
   const [textPost, setTextPost] = useState([]);
-  const [reaction, setReaction] = useState({});
 
   const Feed = () => {
     const URL = 'https://segware-book-api.segware.io/api';
@@ -214,7 +214,7 @@ const Dashboard = () => {
                     width: '200px',
                     height: '300px',
                     borderRadius: '8px',
-                    background: '#dddddd',
+                    background: 'white',
                     marginTop: '30px',
                     boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
 
@@ -248,18 +248,69 @@ const Dashboard = () => {
                         height: '180px',
                       }}
                     >
-                      <p
+                      <div
                         style={{
-                          fontFamily: 'Poppins',
-                          fontSize: '1rem',
-                          marginTop: '8px',
-                          marginLeft: '8px',
-                          padding: 10,
+                          width: '450px',
+                          maxWidth: '450px',
+                          height: '50px',
+
+                          alingItems: 'center',
+                          justifyContent: 'space-between',
+                          display: 'flex',
+                          marginTop: '15px',
+                          wordWrap: 'break-word',
                         }}
                       >
-                        {item.content}
-                      </p>
+                        {/* <div>
+                          <img src={calendar} alt="calendar" />
+                        </div> */}
+                        <p
+                          style={{
+                            fontFamily: 'Poppins',
+                            fontSize: '1rem',
+                            marginTop: '12px',
+                            marginLeft: '0px',
+                            padding: 10,
+                            fontWeight: 700,
+                          }}
+                        >
+                          {moment(item.createdAt).format('DD/MM/YYYY')}
+                        </p>
+                        <p
+                          style={{
+                            fontFamily: 'Poppins',
+                            fontSize: '1rem',
+                            marginTop: '8px',
+                            marginLeft: '8px',
+                            padding: 10,
+                            fontWeight: 700,
+                          }}
+                        >
+                          <PersonIcon
+                            style={{ width: '2px', height: '24px' }}
+                            fontSize="large"
+                            style={{ color: 'black' }}
+                          />
+                          {item.author.username}
+                        </p>
+                      </div>
+                      <div>
+                        <p
+                          style={{
+                            fontFamily: 'Poppins',
+                            fontSize: '1rem',
+                            borderRadius: '4px',
+                            marginTop: '8px',
+                            marginLeft: '8px',
+                            padding: 10,
+                            background: '#EFEFEFEE',
+                          }}
+                        >
+                          {item.content}
+                        </p>
+                      </div>
                     </Grid>
+
                     <div
                       style={{
                         width: '30px',
