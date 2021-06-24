@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import axios from 'axios';
 const ModalCadastro = (props) => {
-  const { isOpen, className, message, url } = props;
+  const { isOpen, className, message, url, toggle } = props;
 
   return (
     <div>
@@ -10,12 +10,16 @@ const ModalCadastro = (props) => {
         <ModalHeader>Cadastro</ModalHeader>
         <ModalBody>{message}</ModalBody>
         <ModalFooter>
-          {url && (
+          {url ? (
             <Button
               style={style.buttonModal}
               color="success"
               onClick={() => (window.location.href = '/')}
             >
+              Confirmar
+            </Button>
+          ) : (
+            <Button style={style.buttonModal} color="success" onClick={toggle}>
               Confirmar
             </Button>
           )}
