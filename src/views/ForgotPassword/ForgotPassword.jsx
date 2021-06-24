@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ModalForgotPassword from '../../components/Modals/ForgotPassword/ModalForgotPassword';
-import apiForgotPass from '../../service/api/apiForgotPass';
+
+import axios from 'axios';
 //Material-UI
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
@@ -9,26 +10,55 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
 //Styled-Components
-import { Button, Container, Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 const ForgotPassword = () => {
   const [values, setValues] = useState({
     username: '',
     showPassword: false,
   });
   const [modalForgotPassword, setModalForgotPassword] = useState(false);
+  const [url, setUrl] = useState(null);
 
+  const [message, setMessage] = useState('');
   const [messageUser, setMessageUser] = useState('');
 
   const handleChange = (prop) => (event) => {
+    const { username } = values;
+    if (username) setMessageUser(!messageUser);
+
     setValues({ ...values, [prop]: event.target.value });
   };
 
   const handleForgotPassword = () => {
     const { username } = values;
-    if (username == '') return setMessageUser('Campo obrigatório*');
+    if (username == '') {
+      setMessageUser('Campo obrigatório*');
+    }
 
-    apiForgotPass({ username });
-    // setModalForgotPassword(!modalForgotPassword);
+    apiForgotPass(username);
+  };
+
+  const apiForgotPass = (username) => {
+    const URL = 'https://segware-book-api.segware.io/api';
+
+    axios
+      .get(`${URL}/forgot-password/${username}`, {
+        username,
+      })
+      .then((response) => {
+        const senha = response.data.password;
+
+        if (response.status == 200) {
+          setMessage(`Sua senha é: ${senha}`);
+          setModalForgotPassword(true);
+          setUrl(true);
+        }
+      })
+      .catch(() => {
+        setMessage('Falha ao consultar na API, tente novamente!');
+        setModalForgotPassword(true);
+        setUrl(false);
+      });
   };
 
   return (
@@ -97,6 +127,7 @@ const ForgotPassword = () => {
               Nome
             </InputLabel>
             <Input
+              data-testid="username-forgot"
               style={{
                 background: '#ffff',
                 borderRadius: '4px',
@@ -109,10 +140,13 @@ const ForgotPassword = () => {
               value={values.username}
               onChange={handleChange('username')}
             />
-            <span style={{ color: 'red' }}>{messageUser}</span>
+            <span data-testid="erroForgot-username" style={{ color: 'red' }}>
+              {messageUser}
+            </span>
           </div>
 
           <Button
+            data-testid="buttonForgot-field"
             color="primary"
             style={{
               alingItems: 'center',
@@ -158,6 +192,9 @@ const ForgotPassword = () => {
       </Grid>
 
       <ModalForgotPassword
+        url={url}
+        message={message}
+        username={values.username}
         isOpen={modalForgotPassword}
         toggle={() => setModalForgotPassword(!modalForgotPassword)}
       />

@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import apiLogin from '../../service/api/apiLogin';
 //Material-UI
-// import clsx from "clsx";
-// import { makeStyles } from "@material-ui/core/styles";
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
-// import FilledInput from "@material-ui/core/FilledInput";
-// import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-// import FormHelperText from "@material-ui/core/FormHelperText";
-// import FormControl from "@material-ui/core/FormControl";
-// import TextField from "@material-ui/core/TextField";
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-// import Typography from '@material-ui/core/Typography';
-
-//Styled-Components
-import { ContainerLink } from './styles';
-import Container from '@material-ui/core/Container';
 import { Grid, Link } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import Header from '../../components/Header/Header';
 import { useHistory } from 'react-router-dom';
+
 // import styled from "styled-components";
 function LoginScreen(props) {
   const [messagePassword, setMessagePassword] = useState('');
@@ -63,10 +52,6 @@ function LoginScreen(props) {
     return;
   };
 
-  useEffect(() => {
-    window.history.forward();
-  }, []);
-
   return (
     <div
       style={{
@@ -74,8 +59,6 @@ function LoginScreen(props) {
         justifyContent: 'center',
         display: 'flex',
         height: '100%',
-
-        // background: 'black',
       }}
     >
       <Header />
@@ -118,13 +101,16 @@ function LoginScreen(props) {
             <InputLabel style={{ marginTop: '100px', fontSize: '25px' }}>Nome</InputLabel>
 
             <Input
+              data-testid="username-field"
               style={{ width: '100%', fontSize: '30px', marginBottom: '12px' }}
               required
               value={values.username}
               onChange={handleChange('username')}
             />
 
-            <span style={{ color: 'red' }}>{messageUser}</span>
+            <span data-testid="erro-user" style={{ color: 'red' }}>
+              {messageUser}
+            </span>
             <InputLabel
               style={{ marginTop: '30px', fontSize: '25px' }}
               htmlFor="standard-adornment-password"
@@ -132,6 +118,7 @@ function LoginScreen(props) {
               Senha
             </InputLabel>
             <Input
+              data-testid="password-field"
               style={{ width: '100%', marginBottom: '12px', fontSize: '30px' }}
               required
               id="standard-adornment-password"
@@ -139,7 +126,7 @@ function LoginScreen(props) {
               value={values.password}
               onChange={handleChange('password')}
               endAdornment={
-                <InputAdornment position="initial">
+                <InputAdornment>
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
@@ -149,10 +136,13 @@ function LoginScreen(props) {
                 </InputAdornment>
               }
             />
-            <span style={{ color: 'red' }}>{messagePassword}</span>
+            <span data-testid="erro-password" style={{ color: 'red' }}>
+              {messagePassword}
+            </span>
           </div>
 
           <Button
+            data-testid="buttonLogin-field"
             style={{
               alingItems: 'center',
               justifyContent: 'center',

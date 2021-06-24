@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const axios = require('axios');
 
-const apiLogin = ({ username, password }) => {
+const apiCadastro = ({ username, password }) => {
   const URL = 'https://segware-book-api.segware.io/api';
 
   // const jwt = (res) => localStorage.setItem('JWT', res.data);
@@ -17,12 +17,7 @@ const apiLogin = ({ username, password }) => {
         alert('Usuário cadastrado com sucesso!');
         return (window.location.href = '/');
       }
-    })
-    .catch((err) => {
-      if (err.status !== 200) {
-        return alert('Usuário já cadastrado!');
-      }
     });
 };
 
-export default apiLogin;
+export default apiCadastro;

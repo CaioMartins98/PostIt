@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import ApiCadastro from '../../service/api/apiCadastro';
+import ModalCadastro from '../../components/Modals/Cadastro/ModalCadastro';
 //Material-UI
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-
+import axios from 'axios';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
-//Styled-Components
-import { Button, Container, Grid, Icon } from '@material-ui/core';
-import { Link } from '@material-ui/core';
-import { BorderRight } from '@material-ui/icons';
+import { IconButton, Input, InputLabel, InputAdornment, Button, Grid } from '@material-ui/core';
+import {} from '@material-ui/icons';
 
 const Cadastro = () => {
   const [values, setValues] = useState({
@@ -23,14 +14,22 @@ const Cadastro = () => {
     password: '',
     showPassword: false,
   });
+  const [message, setMessage] = useState('');
   const [messagePassword, setMessagePassword] = useState('');
   const [messageUser, setMessageUser] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+  const [url, setUrl] = useState(null);
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
   const handleChange = (prop) => (event) => {
+    const { username, password } = values;
+
+    if (username) setMessageUser(!messageUser);
+
+    if (password) setMessagePassword('');
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -38,11 +37,42 @@ const Cadastro = () => {
     event.preventDefault();
   };
 
-  const handleClickSignUp = () => {
+  const validate = () => {
     const { username, password } = values;
-    if (username == '') return setMessageUser('Campo obrigatório*');
-    if (password == '') return setMessagePassword('Campo obrigatório*');
-    ApiCadastro({ username, password });
+
+    if (username == '' && password === '') {
+      setMessageUser('Campo de usuário obrigatório*');
+      setMessagePassword('Campo de senha obrigatório*');
+      return;
+    } else if (username == '') {
+      return setMessageUser('Campo de usuário obrigatório*');
+    } else if (password == '') {
+      return setMessagePassword('Campo de senha obrigatório*');
+    } else {
+      return apiCadastro(username, password);
+    }
+  };
+
+  const apiCadastro = (username, password) => {
+    const URL = 'https://segware-book-api.segware.io/api';
+
+    axios
+      .post(`${URL}/sign-up`, {
+        username,
+        password,
+      })
+      .then((response) => {
+        if (response.status == 200) {
+          setMessage('Usuário cadastrado com sucesso!');
+          setOpenModal(true);
+          setUrl(true);
+        }
+      })
+      .catch(() => {
+        setMessage('Falha ao cadastrar usuário, tente novamente!');
+        setOpenModal(true);
+        setUrl(false);
+      });
   };
 
   return (
@@ -110,6 +140,7 @@ const Cadastro = () => {
               Nome
             </InputLabel>
             <Input
+              data-testid="usernameCadastro-field"
               style={{
                 background: '#ffff',
                 borderRadius: '4px',
@@ -122,7 +153,9 @@ const Cadastro = () => {
               value={values.username}
               onChange={handleChange('username')}
             />
-            <span style={{ color: 'red' }}>{messageUser}</span>
+            <span data-testid="erroCadastro-user" style={{ color: 'red' }}>
+              {messageUser}
+            </span>
 
             <InputLabel
               style={{ marginTop: '30px', fontSize: '25px', color: 'white' }}
@@ -132,6 +165,7 @@ const Cadastro = () => {
             </InputLabel>
 
             <Input
+              data-testid="passwordCadastro-field"
               style={{
                 background: '#ffffff',
                 borderRadius: '4px',
@@ -146,7 +180,7 @@ const Cadastro = () => {
               value={values.password}
               onChange={handleChange('password')}
               endAdornment={
-                <InputAdornment position="initial">
+                <InputAdornment>
                   <IconButton
                     style={{ color: '#4e4e4e' }}
                     aria-label="toggle password visibility"
@@ -158,11 +192,14 @@ const Cadastro = () => {
                 </InputAdornment>
               }
             />
-            <span style={{ color: 'red' }}>{messagePassword}</span>
+            <span data-testid="erroCadastro-password" style={{ color: 'red' }}>
+              {messagePassword}
+            </span>
           </div>
           {/* <span style={{ color: 'red' }}>{messageError}</span> */}
 
           <Button
+            data-testid="buttonCadastro-field"
             color="primary"
             style={{
               alingItems: 'center',
@@ -176,7 +213,7 @@ const Cadastro = () => {
               fontSize: '20px',
             }}
             variant="contained"
-            onClick={() => handleClickSignUp()}
+            onClick={() => validate()}
           >
             CADASTRAR
           </Button>
@@ -206,6 +243,13 @@ const Cadastro = () => {
           </div>
         </Grid>
       </Grid>
+
+      <ModalCadastro
+        url={url}
+        message={message}
+        isOpen={openModal}
+        toggle={() => setOpenModal(!openModal)}
+      />
     </div>
   );
 };

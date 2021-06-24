@@ -92,7 +92,7 @@ const Dashboard = () => {
 
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 300);
   };
 
   const handleReaction = (idFeed, like, love) => {
@@ -104,10 +104,9 @@ const Dashboard = () => {
     React(feedReaction);
   };
   return (
-    <div style={{ background: '#E6E6E6' }}>
+    <div>
       <HeaderDashboard />
       <Container
-        cellHeight={160}
         cols={3}
         style={{
           height: '100vh',
@@ -149,7 +148,8 @@ const Dashboard = () => {
             }}
           >
             <textarea
-              maxLength={200}
+              data-testid="text-area-field"
+              maxLength={280}
               style={{
                 fontFamily: 'Poppins',
                 width: '500px',
@@ -164,12 +164,13 @@ const Dashboard = () => {
                 marginBottom: '20px',
               }}
               aria-label="minimum height"
-              rowsMax={15}
               placeholder="Digite seu texto aqui..."
               value={textValue}
-              onChange={(event) => handleTextValue(event)}
+              onChange={(event) => setTextValue(event.target.value)}
             />
             <Button
+              data-testid="button-field"
+              name="button"
               style={{
                 cursor: 'pointer',
                 fontFamily: 'Poppins',
@@ -183,12 +184,14 @@ const Dashboard = () => {
               }}
               onClick={() => handleClick()}
             >
-              <SendIcon />
+              {/* <SendIcon /> */}
+              ENVIAR
             </Button>
           </Grid>
         </Grid>
 
         <div
+          data-testid="container-text"
           style={{
             width: '100vw',
           }}
@@ -211,15 +214,15 @@ const Dashboard = () => {
                     width: '200px',
                     height: '300px',
                     borderRadius: '8px',
-
-                    marginTop: '26px',
+                    background: '#dddddd',
+                    marginTop: '30px',
                     boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
-                    background: `WHITE`,
-                    // padding: 10,
+
                     margin: 5,
                   }}
                 >
                   <Grid
+                    data-testid="container-text"
                     style={{
                       width: '450px',
                       maxWidth: '450px',
@@ -243,7 +246,6 @@ const Dashboard = () => {
                         width: '26.25rem',
 
                         height: '180px',
-                        // wordWrap: 'break-word',
                       }}
                     >
                       <p
