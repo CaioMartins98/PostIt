@@ -52,11 +52,15 @@ const ForgotPassword = () => {
           setMessage(`Sua senha é: ${senha}`);
           setModalForgotPassword(true);
           setUrl(true);
+        } else if (response.status == 204) {
+          setMessage('Insira um usuário válido!');
+          setModalForgotPassword(true);
+          setUrl(false);
         }
       })
       .catch(() => {
-        setMessage('Falha ao consultar na API, tente novamente!');
-        setModalForgotPassword(true);
+        setMessage('Erro, tente novamente!');
+        setModalForgotPassword(false);
         setUrl(false);
       });
   };

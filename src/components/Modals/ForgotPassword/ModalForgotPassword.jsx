@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 // import apiForgotPass from '../../../service/api/apiForgotPass';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
-import axios from 'axios';
 
 const ModalForgotPassword = (props) => {
   const { isOpen, toggle, className, message, url } = props;
 
   return (
     <div>
-      <Modal isOpen={isOpen} className={className}>
-        <ModalHeader toggle={toggle}> Recuperação de senha</ModalHeader>
+      <Modal toggle={toggle} size="sm" isOpen={isOpen} className={className}>
+        <ModalHeader>Recuperação de senha</ModalHeader>
         <ModalBody>{message}</ModalBody>
         <ModalFooter>
           {url && (
