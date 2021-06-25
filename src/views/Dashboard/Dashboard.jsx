@@ -35,10 +35,13 @@ import {
   CountLike,
 } from './styles';
 import { GridList } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const Dashboard = () => {
   const [textValue, setTextValue] = useState('');
   const [textPost, setTextPost] = useState([]);
+
+  const history = useHistory();
 
   const Feed = () => {
     const URL = 'https://segware-book-api.segware.io/api';
@@ -88,8 +91,6 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    window.history.forward(0);
-
     Feed();
   }, []);
 
@@ -100,9 +101,7 @@ const Dashboard = () => {
 
     apiFeed({ content: content });
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 300);
+    history.go(0);
   };
 
   const handleReaction = (idFeed, like, love) => {
