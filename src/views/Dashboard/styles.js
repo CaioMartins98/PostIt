@@ -85,7 +85,7 @@ export const GridTextContainer = styled(Grid)`
   border-radius: 8px;
 
   margin-top: 15px;
-  word-wrap: normal;
+  word-wrap: break-word;
 `;
 
 export const GridText = styled(Grid)`
