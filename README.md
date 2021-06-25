@@ -1,5 +1,5 @@
 # 💻 Sobre o projeto
-#### Aplicação onde textos podem ser postados de forma livre e, estes textos, possam ter "up votes". Consumindo a API da Segware que foi disponibilizado nos site Swagger UI.
+#### Aplicação onde textos podem ser postados de forma livre e, estes textos, possam ter "up votes". Consumindo a API da Segware que foi disponibilizado no site Swagger UI.
 ##### Para iniciar a aplicação basta inserir 'yarn' no terminal para baixar as depêndencias e depois inserir 'yarn start'.
 
  # 🎥 Preview
