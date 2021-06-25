@@ -1,5 +1,6 @@
 # 💻 Sobre o projeto
-#### Aplicação onde textos podem ser postados de forma livre e, estes textos, possam ter "up votes". Consumindo a API da SegWare que foi disponibilizado nos site Swagger UI
+#### Aplicação onde textos podem ser postados de forma livre e, estes textos, possam ter "up votes". Consumindo a API da SegWare que foi disponibilizado nos site Swagger UI.
+##### Para iniciar a aplicação basta inserir 'yarn' no terminal para baixar as depêndencias e depois inserir 'yarn start'.
 
  # 🎥 Preview
 ![image](https://user-images.githubusercontent.com/75040066/122695600-3928fb80-d217-11eb-8911-01274c57b321.png)
@@ -33,6 +34,7 @@
 
 ##### Framework/Bibliotecas:
 - [x] ReactJS
+- [x] Styled-Components 
 - [x] Material UI
 - [x] ReactStrap
 - [x] Axios 
