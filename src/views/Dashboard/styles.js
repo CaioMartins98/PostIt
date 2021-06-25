@@ -119,7 +119,8 @@ export const DatePublished = styled.p`
   margin-top: 3px;
   margin-left: 6px;
   padding: 10;
-  font-weight: 700;
+
+  font-family: 'Poppins';
 `;
 
 export const UserPublished = styled.p`
@@ -129,6 +130,7 @@ export const UserPublished = styled.p`
   margin-left: 8px;
   padding: 10;
   font-weight: 700;
+  font-family: 'Poppins';
 `;
 
 export const Content = styled.p`
