@@ -1,5 +1,5 @@
 # 💻 Sobre o projeto
-####  Sistema de post de textos.
+#### Aplicação onde textos podem ser postados de forma livre e, estes textos, possam ter "up votes". Consumindo a API da SegWare que foi disponibilizado nos site Swagger UI
 
  # 🎥 Preview
 ![image](https://user-images.githubusercontent.com/75040066/122695600-3928fb80-d217-11eb-8911-01274c57b321.png)
@@ -8,7 +8,8 @@
 
 ![image](https://user-images.githubusercontent.com/75040066/122695623-4fcf5280-d217-11eb-8b0d-7c03c1f64f28.png)
 
-![image](https://user-images.githubusercontent.com/75040066/123261228-db253e00-d4cc-11eb-9c92-c8bf41a387ef.png)
+![image](https://user-images.githubusercontent.com/75040066/123358764-6987d700-d542-11eb-82cf-f4bde1ceb86e.png)
+
 
 # ⚙ Funcionalidades
 - [x] Login
