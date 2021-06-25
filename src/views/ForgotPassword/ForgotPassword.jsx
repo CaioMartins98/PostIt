@@ -21,6 +21,7 @@ import {
   MainContainer,
 } from './styles';
 import { ErrorField } from '../Login/styles';
+import { useHistory } from 'react-router-dom';
 const ForgotPassword = () => {
   const [values, setValues] = useState({
     username: '',
@@ -31,7 +32,7 @@ const ForgotPassword = () => {
 
   const [message, setMessage] = useState('');
   const [messageUser, setMessageUser] = useState('');
-
+  const history = useHistory();
   const handleChange = (prop) => (event) => {
     const { username } = values;
     if (username) setMessageUser(!messageUser);
@@ -148,7 +149,7 @@ const ForgotPassword = () => {
           <BackContainer>
             <h3
               onClick={() => {
-                window.location.href = '/';
+                history.push('/');
               }}
             >
               <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />

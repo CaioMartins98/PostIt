@@ -17,13 +17,14 @@ import {
   LinkForgotPassContainer,
   MainContainer,
 } from './styles';
+import { useHistory } from 'react-router-dom';
 
 function LoginScreen(props) {
   const [messagePassword, setMessagePassword] = useState('');
   const [messageUser, setMessageUser] = useState('');
   const [message, setMessage] = useState('');
   const [openModal, setOpenModal] = useState(false);
-
+  const history = useHistory();
   const [values, setValues] = useState({
     username: '',
     password: '',
@@ -42,7 +43,7 @@ function LoginScreen(props) {
         localStorage.setItem('token', response.data);
 
         if (response.status === 200) {
-          return (window.location.href = '/dashboard');
+          return history.push('/dashboard');
         }
       })
       .catch(() => {
@@ -152,7 +153,7 @@ function LoginScreen(props) {
           <LinkCadastroContainer>
             <LinkField
               onClick={() => {
-                window.location.href = '/cadastro';
+                history.push('/cadastro');
               }}
             >
               Cadastre-se
@@ -166,7 +167,7 @@ function LoginScreen(props) {
                 cursor: 'pointer',
               }}
               onClick={() => {
-                window.location.href = '/recuperar-senha';
+                history.push('/recuperar-senha');
               }}
             >
               Esqueci minha senha

@@ -16,6 +16,7 @@ import {
   ErrorField,
   BackContainer,
 } from './styles';
+import { useHistory } from 'react-router-dom';
 
 const Cadastro = () => {
   const [values, setValues] = useState({
@@ -28,7 +29,7 @@ const Cadastro = () => {
   const [messageUser, setMessageUser] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [url, setUrl] = useState(null);
-
+  const history = useHistory();
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -182,7 +183,7 @@ const Cadastro = () => {
           <BackContainer>
             <h3
               onClick={() => {
-                window.location.href = '/';
+                history.push('/');
               }}
             >
               <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />

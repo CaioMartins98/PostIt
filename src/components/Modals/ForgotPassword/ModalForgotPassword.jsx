@@ -1,10 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 const ModalForgotPassword = (props) => {
   const { isOpen, toggle, className, message, url } = props;
-
+  const history = useHistory();
   return (
     <div>
       <Modal size="sm" isOpen={isOpen} className={className}>
@@ -16,7 +17,7 @@ const ModalForgotPassword = (props) => {
               style={style.buttonModal}
               color="success"
               onClick={() => {
-                window.location.href = '/';
+                history.push('/');
               }}
             >
               Confirmar

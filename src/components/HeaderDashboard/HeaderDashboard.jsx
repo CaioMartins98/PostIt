@@ -3,9 +3,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import { Popover, AppBar, Toolbar, Typography, Button, makeStyles } from '@material-ui/core';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import title from '../../assets/title.png';
-
+import { useHistory } from 'react-router-dom';
 const HeaderDashboard = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const history = useHistory();
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -73,7 +74,7 @@ const HeaderDashboard = (props) => {
             cursor: 'pointer',
             marginRight: '10px',
           }}
-          onClick={() => (localStorage.removeItem('token'), (window.location.href = '/'))}
+          onClick={() => (localStorage.removeItem('token'), history.push('/'))}
         >
           Sair <DirectionsRunIcon fontSize="medium" />
         </h2>
