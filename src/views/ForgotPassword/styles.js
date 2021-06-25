@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Grid, Link } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 export const MainContainer = styled.div`
   background: black;

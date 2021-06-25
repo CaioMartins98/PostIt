@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Grid, Link } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 export const MainContainer = styled.div`
   background: black;
@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
 `;
 export const GridContainer = styled(Grid)`
   display: flex;
-  aling-items: center;
+  align-items: center;
   justify-content: center;
   margin-top: 50px;
 
@@ -26,7 +26,7 @@ export const GridContainer = styled(Grid)`
     font-family: 'Poppins';
     font-size: 40px;
     font-weight: 700;
-    aling-items: center;
+    align-items: center;
     justify-content: center;
     display: grid;
     padding-top: 30;
@@ -51,7 +51,7 @@ export const ErrorField = styled.span`
 
 export const BackContainer = styled.div`
   color: gray;
-  aling-items: center;
+  align-items: center;
   justify-content: center;
   display: flex;
   margin-top: 50px;

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-// import apiForgotPass from '../../../service/api/apiForgotPass';
+import React from 'react';
+
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 const ModalForgotPassword = (props) => {
@@ -23,7 +23,7 @@ const ModalForgotPassword = (props) => {
             </Button>
           ) : (
             <Button style={style.buttonModal} color="primary" onClick={toggle}>
-             OK
+              OK
             </Button>
           )}
         </ModalFooter>

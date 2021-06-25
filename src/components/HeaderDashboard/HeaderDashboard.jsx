@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import { makeStyles } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
-import Popover from '@material-ui/core/Popover';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Popover, AppBar, Toolbar, Typography, Button, makeStyles } from '@material-ui/core';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import title from '../../assets/title.png';
-import { Image } from '@material-ui/icons';
 
 const HeaderDashboard = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);

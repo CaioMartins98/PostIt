@@ -10,7 +10,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
 //Styled-Components
-import { Button, Grid } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 import {
   BackContainer,
@@ -41,7 +41,7 @@ const ForgotPassword = () => {
 
   const handleForgotPassword = () => {
     const { username } = values;
-    if (username == '') {
+    if (username === '') {
       setMessageUser('Campo obrigatório*');
     }
 
@@ -58,11 +58,11 @@ const ForgotPassword = () => {
       .then((response) => {
         const senha = response.data.password;
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           setMessage(`Sua senha é: ${senha}`);
           setModalForgotPassword(true);
           setUrl(true);
-        } else if (response.status == 204) {
+        } else if (response.status === 204) {
           setMessage('Insira um usuário válido!');
           setModalForgotPassword(true);
           setUrl(false);

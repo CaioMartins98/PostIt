@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
-import axios from 'axios';
+
 const ModalCadastro = (props) => {
   const { isOpen, className, message, url, toggle } = props;
 
