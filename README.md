@@ -9,7 +9,7 @@
 
 ![image](https://user-images.githubusercontent.com/75040066/122695623-4fcf5280-d217-11eb-8b0d-7c03c1f64f28.png)
 
-![image](https://user-images.githubusercontent.com/75040066/123358764-6987d700-d542-11eb-82cf-f4bde1ceb86e.png)
+![image](https://user-images.githubusercontent.com/75040066/123360459-bcae5980-d543-11eb-9a45-74273843faaa.png)
 
 
 # ⚙ Funcionalidades
