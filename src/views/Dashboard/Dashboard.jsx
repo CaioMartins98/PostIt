@@ -34,6 +34,7 @@ import {
   LikedPress,
   CountLike,
 } from './styles';
+import { GridList } from '@material-ui/core';
 
 const Dashboard = () => {
   const [textValue, setTextValue] = useState('');
@@ -138,9 +139,9 @@ const Dashboard = () => {
           <MainGridContainer container>
             {textPost &&
               textPost.map((item, index) => (
-                <GridContainer item xs={12} sm={9} md={6} lg={2} xl={3}>
+                <GridContainer item xs={11} sm={9} md={6} lg={4} xl={3}>
                   <GridTextContainer data-testid="container-text">
-                    <GridText item xs={8} sm={12} md={12} lg={12} xl={12}>
+                    <GridText item xs={12} sm={12} md={12} lg={12} xl={12}>
                       <GridTextArea>
                         <DateContainer>
                           <img
@@ -158,9 +159,10 @@ const Dashboard = () => {
                           {item.author.username}
                         </UserPublished>
                       </GridTextArea>
-                      <Divider style={{ background: 'black', marginLeft: '20px' }} />
-
-                      <Content>{item.content}</Content>
+                      <Divider style={{ background: 'black', marginLeft: '50px' }} />
+                      <GridList style={{ height: '150px', marginTop: '10px' }}>
+                        <Content>{item.content}</Content>
+                      </GridList>
                     </GridText>
 
                     <ReactionContainer>

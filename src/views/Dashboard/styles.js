@@ -134,11 +134,10 @@ export const UserPublished = styled.p`
 export const Content = styled.p`
   font-family: Poppins;
   font-size: 1rem;
+
   border-radius: 4px;
-  margin-top: 10px;
-  margin-left: 20px;
-  padding: 20;
-  background: #efefefee;
+  margin-top: 6px;
+  margin-left: 50px;
 
   :hover {
     cursor: default;
