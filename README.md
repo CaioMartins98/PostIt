@@ -3,13 +3,17 @@
 ##### Para iniciar a aplicação basta inserir 'yarn' no terminal para baixar as depêndencias e depois inserir 'yarn start'.
 
  # 🎥 Preview
+ ## Tela de Login
 ![image](https://user-images.githubusercontent.com/75040066/122695600-3928fb80-d217-11eb-8911-01274c57b321.png)
 
+## Tela de Cadastro
 ![image](https://user-images.githubusercontent.com/75040066/122695615-46de8100-d217-11eb-923f-a85fc08f8b57.png)
 
+## Tela de Recuperação de senha
 ![image](https://user-images.githubusercontent.com/75040066/122695623-4fcf5280-d217-11eb-8b0d-7c03c1f64f28.png)
 
-![image](https://user-images.githubusercontent.com/75040066/123360459-bcae5980-d543-11eb-9a45-74273843faaa.png)
+## Tela Dashboard
+![image](https://user-images.githubusercontent.com/75040066/123361539-a1444e00-d545-11eb-804c-1144dff83ec3.png)
 
 
 # ⚙ Funcionalidades
