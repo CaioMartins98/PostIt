@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ModalLogin from '../../components/Modals/Login/ModalLogin';
 
 import { Visibility, VisibilityOff } from '@material-ui/icons';
@@ -41,7 +41,7 @@ function LoginScreen(props) {
       .then((response) => {
         localStorage.setItem('token', response.data);
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           return (window.location.href = '/dashboard');
         }
       })
@@ -67,13 +67,13 @@ function LoginScreen(props) {
   const validate = () => {
     const { username, password } = values;
 
-    if (username == '' && password === '') {
+    if (username === '' && password === '') {
       setMessageUser('Campo de usuário obrigatório*');
       setMessagePassword('Campo de senha obrigatório*');
       return;
-    } else if (username == '') {
+    } else if (username === '') {
       return setMessageUser('Campo de usuário obrigatório*');
-    } else if (password == '') {
+    } else if (password === '') {
       return setMessagePassword('Campo de senha obrigatório*');
     } else {
       apiLogin(username, password);

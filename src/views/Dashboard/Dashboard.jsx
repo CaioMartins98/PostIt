@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
 import apiFeed from '../../service/api/apiFeed';
 import axios from 'axios';
@@ -79,7 +79,7 @@ const Dashboard = () => {
         },
       )
       .then((response) => {
-        if (response.status == 201 || response.status == 200) {
+        if (response.status === 201 || response.status === 200) {
           Feed();
           //
         }

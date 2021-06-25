@@ -49,13 +49,13 @@ const Cadastro = () => {
   const validate = () => {
     const { username, password } = values;
 
-    if (username == '' && password === '') {
+    if (username === '' && password === '') {
       setMessageUser('Campo de usuário obrigatório*');
       setMessagePassword('Campo de senha obrigatório*');
       return;
-    } else if (username == '') {
+    } else if (username === '') {
       return setMessageUser('Campo de usuário obrigatório*');
-    } else if (password == '') {
+    } else if (password === '') {
       return setMessagePassword('Campo de senha obrigatório*');
     } else {
       return apiCadastro(username, password);
@@ -71,7 +71,7 @@ const Cadastro = () => {
         password,
       })
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           setMessage('Usuário cadastrado com sucesso!');
           setOpenModal(true);
           setUrl(true);
