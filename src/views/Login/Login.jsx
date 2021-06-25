@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import ModalLogin from '../../components/Modals/Login/ModalLogin';
 
-//Material-UI
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { Grid, Link } from '@material-ui/core';
-import { Button } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { Button, Link, IconButton, Input, InputLabel, InputAdornment } from '@material-ui/core';
+
 import Header from '../../components/Header/Header';
-import { useHistory } from 'react-router-dom';
+
 import axios from 'axios';
 
-// import styled from "styled-components";
+import {
+  ErrorField,
+  GridContainer,
+  GridLoginField,
+  LinkCadastroContainer,
+  LinkField,
+  LinkForgotPassContainer,
+  MainContainer,
+} from './styles';
+
 function LoginScreen(props) {
   const [messagePassword, setMessagePassword] = useState('');
   const [messageUser, setMessageUser] = useState('');
@@ -78,51 +81,12 @@ function LoginScreen(props) {
   };
 
   return (
-    <div
-      style={{
-        alingItems: 'center',
-        justifyContent: 'center',
-        display: 'flex',
-        height: '100%',
-      }}
-    >
+    <MainContainer>
       <Header />
-      <Grid container style={{ display: 'flex', alingItems: 'center', justifyContent: 'center' }}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          lg={12}
-          style={{
-            color: 'white',
-            fontFamily: 'Poppins',
-            width: '30vw',
-            marginTop: '15vh',
-            minWidth: '20vw',
-            marginLeft: '-10vw',
-            height: '600px',
-          }}
-        >
-          <h1
-            style={{
-              color: 'black',
-              fontFamily: 'Poppins',
-              fontSize: '40px',
-              fontWeight: '700',
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-            }}
-          >
-            {' '}
-            Bem-Vindo!
-          </h1>
-          <div
-            style={{
-              width: '100%',
-            }}
-          >
+      <GridContainer container>
+        <GridLoginField item xs={12} sm={12} md={12} lg={10}>
+          <h1> Bem-Vindo!</h1>
+          <div style={{}}>
             <InputLabel style={{ marginTop: '100px', fontSize: '25px' }}>Nome</InputLabel>
 
             <Input
@@ -133,9 +97,9 @@ function LoginScreen(props) {
               onChange={handleChange('username')}
             />
 
-            <span data-testid="erro-user" style={{ color: 'red' }}>
+            <ErrorField data-testid="erro-user" style={{ color: 'red' }}>
               {messageUser}
-            </span>
+            </ErrorField>
             <InputLabel
               style={{ marginTop: '30px', fontSize: '25px' }}
               htmlFor="standard-adornment-password"
@@ -185,37 +149,16 @@ function LoginScreen(props) {
             ENTRAR
           </Button>
 
-          <div
-            style={{
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-              marginTop: '25px',
-              marginBottom: '36px',
-              fontSize: '25px',
-            }}
-          >
-            <Link
-              style={{
-                outline: 'none',
-
-                cursor: 'pointer',
-              }}
+          <LinkCadastroContainer>
+            <LinkField
               onClick={() => {
                 window.location.href = '/cadastro';
               }}
             >
               Cadastre-se
-            </Link>
-          </div>
-          <div
-            style={{
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-              fontSize: '18px',
-            }}
-          >
+            </LinkField>
+          </LinkCadastroContainer>
+          <LinkForgotPassContainer>
             <Link
               style={{
                 marginTop: '0px',
@@ -228,9 +171,9 @@ function LoginScreen(props) {
             >
               Esqueci minha senha
             </Link>
-          </div>
-        </Grid>
-      </Grid>
+          </LinkForgotPassContainer>
+        </GridLoginField>
+      </GridContainer>
 
       <ModalLogin
         username={values.username}
@@ -239,7 +182,7 @@ function LoginScreen(props) {
         message={message}
         toggle={() => setOpenModal(!openModal)}
       />
-    </div>
+    </MainContainer>
   );
 }
 

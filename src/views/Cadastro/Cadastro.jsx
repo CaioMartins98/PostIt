@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import ModalCadastro from '../../components/Modals/Cadastro/ModalCadastro';
-//Material-UI
+
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import axios from 'axios';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import { IconButton, Input, InputLabel, InputAdornment, Button, Grid } from '@material-ui/core';
-import {} from '@material-ui/icons';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+
+import { IconButton, Input, InputLabel, InputAdornment, Button } from '@material-ui/core';
+
+import {
+  FieldsContainer,
+  GridCadastroContainer,
+  GridContainer,
+  HeaderContainer,
+  MainContainer,
+  ErrorField,
+  BackContainer,
+} from './styles';
 
 const Cadastro = () => {
   const [values, setValues] = useState({
@@ -76,66 +85,19 @@ const Cadastro = () => {
   };
 
   return (
-    <div
-      style={{
-        background: 'black',
-
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
-      <div
-        style={{
-          justifyContent: 'center',
-          textAlign: 'center',
-          display: 'flex',
-
-          fontFamily: 'Pacifico',
-        }}
-      >
+    <MainContainer>
+      <HeaderContainer>
         <h1 style={{ fontSize: '100px', marginTop: '15px', color: 'white' }}>Post</h1>
 
         <h1 style={{ fontSize: '100px', marginLeft: '15px', marginTop: '15px', color: '#3D4DDB' }}>
           {' '}
           It!
         </h1>
-      </div>
-      <Grid container style={{ display: 'flex', alingItems: 'center', justifyContent: 'center' }}>
-        <Grid
-          item
-          xs={11}
-          sm={10}
-          md={8}
-          lg={3}
-          style={{
-            borderRadius: '8px',
-            color: 'white',
-            fontFamily: 'Poppins',
-            width: '35vw',
-            height: '70vh',
-            marginTop: '55px',
-          }}
-        >
-          <h1
-            style={{
-              color: 'white',
-              fontFamily: 'Poppins',
-              fontSize: '40px',
-              fontWeight: '700',
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'grid',
-              paddingTop: 30,
-            }}
-          >
-            {' '}
-            Cadastro
-          </h1>
-          <div
-            style={{
-              width: '100%',
-            }}
-          >
+      </HeaderContainer>
+      <GridContainer container>
+        <GridCadastroContainer item xs={11} sm={10} md={8} lg={3}>
+          <h1> Cadastro</h1>
+          <FieldsContainer>
             <InputLabel style={{ marginTop: '70px', fontSize: '25px', color: 'white' }}>
               Nome
             </InputLabel>
@@ -153,9 +115,9 @@ const Cadastro = () => {
               value={values.username}
               onChange={handleChange('username')}
             />
-            <span data-testid="erroCadastro-user" style={{ color: 'red' }}>
+            <ErrorField data-testid="erroCadastro-user" style={{ color: 'red' }}>
               {messageUser}
-            </span>
+            </ErrorField>
 
             <InputLabel
               style={{ marginTop: '30px', fontSize: '25px', color: 'white' }}
@@ -192,11 +154,10 @@ const Cadastro = () => {
                 </InputAdornment>
               }
             />
-            <span data-testid="erroCadastro-password" style={{ color: 'red' }}>
+            <ErrorField data-testid="erroCadastro-password" style={{ color: 'red' }}>
               {messagePassword}
-            </span>
-          </div>
-          {/* <span style={{ color: 'red' }}>{messageError}</span> */}
+            </ErrorField>
+          </FieldsContainer>
 
           <Button
             data-testid="buttonCadastro-field"
@@ -218,21 +179,8 @@ const Cadastro = () => {
             CADASTRAR
           </Button>
 
-          <div
-            style={{
-              color: 'gray',
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-              marginTop: '50px',
-              marginBottom: '36px',
-              fontSize: '25px',
-            }}
-          >
+          <BackContainer>
             <h3
-              style={{
-                cursor: 'pointer',
-              }}
               onClick={() => {
                 window.location.href = '/';
               }}
@@ -240,9 +188,9 @@ const Cadastro = () => {
               <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />
               Voltar
             </h3>
-          </div>
-        </Grid>
-      </Grid>
+          </BackContainer>
+        </GridCadastroContainer>
+      </GridContainer>
 
       <ModalCadastro
         url={url}
@@ -250,7 +198,7 @@ const Cadastro = () => {
         isOpen={openModal}
         toggle={() => setOpenModal(!openModal)}
       />
-    </div>
+    </MainContainer>
   );
 };
 

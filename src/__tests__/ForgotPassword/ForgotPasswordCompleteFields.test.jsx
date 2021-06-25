@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
-import ForgotPassword from '../../views/ForgotPassword/ForgotPassword';
+import ForgotPassword from '../../views/ForgotPassword/ForgotPassword.jsx';
 
 describe('Preenchendo inputs do "Esqueci minha senha"', () => {
   it('Ação de recuperar senha', async () => {

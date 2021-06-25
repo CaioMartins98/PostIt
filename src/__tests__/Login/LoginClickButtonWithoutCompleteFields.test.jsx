@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LoginScreen from '../../views/Login/Login';
+import LoginScreen from '../../views/Login/Login.jsx';
 
 describe('Clicando no botão "ENTRAR" sem preencher os inputs', () => {
   test('Login', async () => {

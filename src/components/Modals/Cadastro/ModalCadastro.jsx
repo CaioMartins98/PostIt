@@ -19,8 +19,8 @@ const ModalCadastro = (props) => {
               Confirmar
             </Button>
           ) : (
-            <Button style={style.buttonModal} color="success" onClick={toggle}>
-              Confirmar
+            <Button style={style.buttonModal} color="primary" onClick={toggle}>
+              OK
             </Button>
           )}
         </ModalFooter>

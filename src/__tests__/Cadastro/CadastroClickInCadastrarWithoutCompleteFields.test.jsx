@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Cadastro from '../../views/Cadastro/Cadastro';
+import Cadastro from '../../views/Cadastro/Cadastro.jsx';
 
 describe('Clicando no botão "CADASTRAR" sem preencher os inputs', () => {
   test('Login', async () => {

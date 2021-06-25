@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LoginScreen from '../../views/Login/Login';
+import LoginScreen from '../../views/Login/Login.jsx';
 
 describe('Clicando no botão clicando no link "Cadastre-se"', () => {
   test('Login', async () => {

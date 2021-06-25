@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ForgotPassword from '../../views/ForgotPassword/ForgotPassword';
+import ForgotPassword from '../../views/ForgotPassword/ForgotPassword.jsx';
 
 describe('Clicando no botão "RECUPERAR SENHA" sem preencher o input', () => {
   test('Esqueci minha senha', async () => {

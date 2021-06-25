@@ -11,6 +11,7 @@ const Header = () => {
         md={10}
         lg={10}
         style={{
+          position: 'relative',
           background: 'black',
           color: 'white',
           fontFamily: 'Pacifico',
@@ -18,7 +19,7 @@ const Header = () => {
           alignItems: 'center',
           justifyContent: 'center',
           display: 'flex',
-          width: '80vw',
+          width: '70vw',
           boxShadow: '10px 0px 15px rgba(0, 0, 0, 0.5)',
         }}
       >
@@ -29,13 +30,13 @@ const Header = () => {
             display: 'flex',
           }}
         >
-          <h1 style={{ fontSize: '100px' }}>Post</h1>
+          <h1 style={{ fontSize: '90px' }}>Post</h1>
 
           <h1
             style={{
               marginLeft: '15px',
               color: '#3D4DDB',
-              fontSize: '100px',
+              fontSize: '90px',
             }}
           >
             {' '}

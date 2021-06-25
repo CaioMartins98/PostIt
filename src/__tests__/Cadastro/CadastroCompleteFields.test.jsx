@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
-import Cadastro from '../../views/Cadastro/Cadastro';
+import Cadastro from '../../views/Cadastro/Cadastro.jsx';
 
 describe('Preenchendo inputs do Cadastro', () => {
   it('Ação de entrar na aplicação', async () => {

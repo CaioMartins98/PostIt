@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
-import LoginScreen from '../../views/Login/Login';
+import LoginScreen from '../../views/Login/Login.jsx';
 
 describe('Preenchendo inputs do login', () => {
   it('Ação de entrar na aplicação', async () => {

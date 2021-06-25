@@ -1,9 +1,5 @@
-import { Container, Grid, GridList } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import React, { useEffect, useState } from 'react';
 import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
-import _ from 'lodash';
-import apiReaction from '../../service/api/apiReaction';
 import apiFeed from '../../service/api/apiFeed';
 import axios from 'axios';
 import loveOn from '../../assets/Reaction/loveOn.png';
@@ -13,6 +9,31 @@ import likeOff from '../../assets/Reaction/likeOff.png';
 import PersonIcon from '@material-ui/icons/Person';
 import calendar from '../../assets/calendar.png';
 import moment from 'moment';
+import Divider from '@material-ui/core/Divider';
+
+import {
+  MainContainer,
+  AreaContainer,
+  Label,
+  TextAreaContainer,
+  TextArea,
+  ButtonField,
+  CardContainer,
+  GridContainer,
+  MainGridContainer,
+  GridTextContainer,
+  GridText,
+  GridTextArea,
+  DateContainer,
+  DatePublished,
+  UserPublished,
+  Content,
+  ReactionContainer,
+  LovedPress,
+  CountLove,
+  LikedPress,
+  CountLike,
+} from './styles';
 
 const Dashboard = () => {
   const [textValue, setTextValue] = useState('');
@@ -70,19 +91,6 @@ const Dashboard = () => {
     Feed();
   }, []);
 
-  function gerar_cor() {
-    return (
-      '#' +
-      parseInt(Math.random() * 0xffffff)
-        .toString(16)
-        .padStart(6, '0')
-    );
-  }
-
-  const handleTextValue = (text) => {
-    setTextValue(text.target.value);
-  };
-
   const handleClick = () => {
     if (!textValue) return;
 
@@ -106,223 +114,57 @@ const Dashboard = () => {
   return (
     <div>
       <HeaderDashboard />
-      <Container
-        cols={3}
-        style={{
-          height: '100vh',
-          width: '100vw',
-          display: 'inline',
-          justifyContent: 'center',
-          alingItems: 'center',
-        }}
-      >
-        <div
-          style={{
-            marginTop: '2vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alingItems: 'center',
-          }}
-        >
-          <label style={{ fontFamily: 'Poppins', fontSize: '30px' }}>Escreva seu texto</label>
+      <MainContainer cols={3}>
+        <div>
+          <Label style={{ fontFamily: 'Poppins', fontSize: '30px' }}>Escreva seu texto</Label>
         </div>
-        <Grid
-          container
-          style={{
-            marginTop: '2vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alingItems: 'center',
-          }}
-        >
-          <Grid
-            item
-            xs={12}
-            sm={9}
-            md={6}
-            lg={3}
-            xl={3}
-            style={{
-              marginTop: '2vh',
-              display: 'flex',
-            }}
-          >
-            <textarea
+        <AreaContainer container>
+          <TextAreaContainer item xs={12} sm={9} md={6} lg={3} xl={3}>
+            <TextArea
               data-testid="text-area-field"
               maxLength={280}
-              style={{
-                fontFamily: 'Poppins',
-                width: '500px',
-                minWidth: '450px',
-                maxWidth: '450px',
-                minHeight: '100px',
-                maxHeight: '100px',
-                fontSize: '20px',
-                borderTopLeftRadius: '4px',
-                borderBottomLeftRadius: '4px',
-                outline: 'none',
-                marginBottom: '20px',
-              }}
               aria-label="minimum height"
               placeholder="Digite seu texto aqui..."
               value={textValue}
               onChange={(event) => setTextValue(event.target.value)}
             />
-            <Button
-              data-testid="button-field"
-              name="button"
-              style={{
-                cursor: 'pointer',
-                fontFamily: 'Poppins',
-                fontWeight: '700',
-                color: ' white',
-                background: '#3D4DDB',
-                marginBottom: '20px',
-                borderTopLeftRadius: '0px',
-                borderBottomLeftRadius: '0px',
-                outline: 'none',
-              }}
-              onClick={() => handleClick()}
-            >
-              {/* <SendIcon /> */}
+            <ButtonField data-testid="button-field" name="button" onClick={() => handleClick()}>
               ENVIAR
-            </Button>
-          </Grid>
-        </Grid>
+            </ButtonField>
+          </TextAreaContainer>
+        </AreaContainer>
 
-        <div
-          data-testid="container-text"
-          style={{
-            width: '100vw',
-          }}
-        >
-          <Grid
-            container
-            style={{ alingItems: 'center', justifyContent: 'center', display: 'flex' }}
-          >
+        <CardContainer data-testid="container-text">
+          <MainGridContainer container>
             {textPost &&
               textPost.map((item, index) => (
-                <Grid
-                  item
-                  xs={11}
-                  sm={10}
-                  md={6}
-                  lg={3}
-                  xl={3}
-                  style={{
-                    border: `3px solid #3D4DDB`,
-                    width: '200px',
-                    height: '300px',
-                    borderRadius: '8px',
-                    background: 'white',
-                    marginTop: '30px',
-                    boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
-
-                    margin: 5,
-                  }}
-                >
-                  <Grid
-                    data-testid="container-text"
-                    style={{
-                      width: '450px',
-                      maxWidth: '450px',
-                      height: '500px',
-                      borderRadius: '8px',
-                      // alingItems: 'center',
-                      // justifyContent: 'flex',
-                      // display: 'flex',
-                      marginTop: '15px',
-                      wordWrap: 'break-word',
-                    }}
-                  >
-                    <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={12}
-                      xl={12}
-                      style={{
-                        width: '26.25rem',
-
-                        height: '180px',
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: '450px',
-                          maxWidth: '450px',
-                          height: '50px',
-
-                          alingItems: 'center',
-                          justifyContent: 'space-between',
-                          display: 'flex',
-                          marginTop: '15px',
-                          wordWrap: 'break-word',
-                        }}
-                      >
-                        {/* <div>
-                          <img src={calendar} alt="calendar" />
-                        </div> */}
-                        <p
-                          style={{
-                            fontFamily: 'Poppins',
-                            fontSize: '1rem',
-                            marginTop: '12px',
-                            marginLeft: '0px',
-                            padding: 10,
-                            fontWeight: 700,
-                          }}
-                        >
-                          {moment(item.createdAt).format('DD/MM/YYYY')}
-                        </p>
-                        <p
-                          style={{
-                            fontFamily: 'Poppins',
-                            fontSize: '1rem',
-                            marginTop: '8px',
-                            marginLeft: '8px',
-                            padding: 10,
-                            fontWeight: 700,
-                          }}
-                        >
-                          <PersonIcon
-                            style={{ width: '2px', height: '24px' }}
-                            fontSize="large"
-                            style={{ color: 'black' }}
+                <GridContainer item xs={11} sm={9} md={6} lg={4} xl={3}>
+                  <GridTextContainer data-testid="container-text">
+                    <GridText item xs={12} sm={12} md={12} lg={12} xl={12}>
+                      <GridTextArea>
+                        <DateContainer>
+                          <img
+                            style={{ marginTop: '-13px', width: '24px', height: '24px' }}
+                            src={calendar}
+                            alt="calendar"
                           />
+
+                          <DatePublished>
+                            {moment(item.createdAt).format('DD/MM/YYYY')}
+                          </DatePublished>
+                        </DateContainer>
+                        <UserPublished>
+                          <PersonIcon fontSize="large" style={{ color: 'black' }} />
                           {item.author.username}
-                        </p>
-                      </div>
-                      <div>
-                        <p
-                          style={{
-                            fontFamily: 'Poppins',
-                            fontSize: '1rem',
-                            borderRadius: '4px',
-                            marginTop: '8px',
-                            marginLeft: '8px',
-                            padding: 10,
-                            background: '#EFEFEFEE',
-                          }}
-                        >
-                          {item.content}
-                        </p>
-                      </div>
-                    </Grid>
+                        </UserPublished>
+                      </GridTextArea>
+                      <Divider style={{ background: 'black', marginLeft: '20px' }} />
 
-                    <div
-                      style={{
-                        width: '30px',
-                        display: 'flex',
-                        alignItems: 'center',
+                      <Content>{item.content}</Content>
+                    </GridText>
 
-                        heigth: '10px',
-                        marginLeft: '10px',
-                        marginTop: '52px',
-                      }}
-                    >
-                      <span
+                    <ReactionContainer>
+                      <LovedPress
                         style={{ cursor: 'pointer', marginRight: '4px' }}
                         onClick={() =>
                           handleReaction(item.id, item.activeUserLikedIt, !item.activeUserLovedIt)
@@ -333,10 +175,9 @@ const Dashboard = () => {
                         ) : (
                           <img style={{ width: '30px', height: '30px' }} src={loveOff} alt="" />
                         )}
-                      </span>
-                      <p style={{ fontFamily: 'Poppins', marginRight: '10px' }}>{item.loves}</p>
-                      <span
-                        style={{ cursor: 'pointer' }}
+                      </LovedPress>
+                      <CountLove>{item.loves}</CountLove>
+                      <LikedPress
                         onClick={() =>
                           handleReaction(item.id, !item.activeUserLikedIt, item.activeUserLovedIt)
                         }
@@ -346,15 +187,15 @@ const Dashboard = () => {
                         ) : (
                           <img style={{ width: '30px', height: '30px' }} src={likeOff} alt="" />
                         )}
-                      </span>
-                      <p style={{ fontFamily: 'Poppins' }}>{item.likes}</p>
-                    </div>
-                  </Grid>
-                </Grid>
+                      </LikedPress>
+                      <CountLike style={{ fontFamily: 'Poppins' }}>{item.likes}</CountLike>
+                    </ReactionContainer>
+                  </GridTextContainer>
+                </GridContainer>
               ))}
-          </Grid>
-        </div>
-      </Container>
+          </MainGridContainer>
+        </CardContainer>
+      </MainContainer>
     </div>
   );
 };

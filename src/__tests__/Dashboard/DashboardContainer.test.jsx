@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor, getByText } from '@testing-library/react';
 
-import Dashboard from '../../views/Dashboard/Dashboard';
+import Dashboard from '../../views/Dashboard/Dashboard.jsx';
 
 describe('Dashboard', () => {
   it('Envia um novo texto', async () => {

@@ -11,6 +11,16 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 //Styled-Components
 import { Button, Grid } from '@material-ui/core';
+
+import {
+  BackContainer,
+  FieldsContainer,
+  GridContainer,
+  GridForgotPassContainer,
+  HeaderContainer,
+  MainContainer,
+} from './styles';
+import { ErrorField } from '../Login/styles';
 const ForgotPassword = () => {
   const [values, setValues] = useState({
     username: '',
@@ -66,46 +76,17 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div
-      style={{
-        background: 'black',
-
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
-      <div
-        style={{
-          justifyContent: 'center',
-          textAlign: 'center',
-          display: 'flex',
-
-          fontFamily: 'Pacifico',
-        }}
-      >
+    <MainContainer>
+      <HeaderContainer>
         <h1 style={{ marginTop: '15px', color: 'white', fontSize: '100px' }}>Post</h1>
 
         <h1 style={{ marginLeft: '15px', marginTop: '15px', color: '#3D4DDB', fontSize: '100px' }}>
           {' '}
           It!
         </h1>
-      </div>
-      <Grid container style={{ display: 'flex', alingItems: 'center', justifyContent: 'center' }}>
-        <Grid
-          item
-          xs={11}
-          sm={10}
-          md={8}
-          lg={3}
-          style={{
-            borderRadius: '8px',
-            color: 'white',
-            fontFamily: 'Poppins',
-            width: '35vw',
-            height: '70vh',
-            marginTop: '55px',
-          }}
-        >
+      </HeaderContainer>
+      <GridContainer container>
+        <GridForgotPassContainer item xs={11} sm={10} md={8} lg={3}>
           <h1
             style={{
               color: 'white',
@@ -121,12 +102,7 @@ const ForgotPassword = () => {
             Recuperar senha
           </h1>
 
-          <div
-            style={{
-              width: '100%',
-              marginTop: '90px',
-            }}
-          >
+          <FieldsContainer>
             <InputLabel style={{ marginTop: '70px', fontSize: '25px', color: 'white' }}>
               Nome
             </InputLabel>
@@ -144,10 +120,10 @@ const ForgotPassword = () => {
               value={values.username}
               onChange={handleChange('username')}
             />
-            <span data-testid="erroForgot-username" style={{ color: 'red' }}>
+            <ErrorField data-testid="erroForgot-username" style={{ color: 'red' }}>
               {messageUser}
-            </span>
-          </div>
+            </ErrorField>
+          </FieldsContainer>
 
           <Button
             data-testid="buttonForgot-field"
@@ -169,21 +145,8 @@ const ForgotPassword = () => {
             RECUPERAR SENHA
           </Button>
 
-          <div
-            style={{
-              color: 'gray',
-              alingItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-              marginTop: '50px',
-              marginBottom: '36px',
-              fontSize: '25px',
-            }}
-          >
+          <BackContainer>
             <h3
-              style={{
-                cursor: 'pointer',
-              }}
               onClick={() => {
                 window.location.href = '/';
               }}
@@ -191,9 +154,9 @@ const ForgotPassword = () => {
               <ArrowBackIcon style={{ color: 'gray', marginRight: '10px' }} fontSize="small" />
               Voltar
             </h3>
-          </div>
-        </Grid>
-      </Grid>
+          </BackContainer>
+        </GridForgotPassContainer>
+      </GridContainer>
 
       <ModalForgotPassword
         url={url}
@@ -202,7 +165,7 @@ const ForgotPassword = () => {
         isOpen={modalForgotPassword}
         toggle={() => setModalForgotPassword(!modalForgotPassword)}
       />
-    </div>
+    </MainContainer>
   );
 };
 

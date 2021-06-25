@@ -29,11 +29,10 @@ export const GridContainer = styled(Grid)`
     aling-items: center;
     justify-content: center;
     display: grid;
-    padding-top: 30;
   }
 `;
 
-export const GridCadastroContainer = styled(Grid)`
+export const GridForgotPassContainer = styled(Grid)`
   border-radius: 8px;
   color: white;
   font-family: 'Poppins';
