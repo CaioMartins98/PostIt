@@ -79,13 +79,13 @@ export const GridContainer = styled(Grid)`
 `;
 
 export const GridTextContainer = styled(Grid)`
-  width: 450px;
-  max-width: 450px;
+  width: 500px;
+  max-width: 500px;
   height: 500px;
   border-radius: 8px;
 
   margin-top: 15px;
-  word-wrap: break-word;
+  word-wrap: normal;
 `;
 
 export const GridText = styled(Grid)`
@@ -136,6 +136,7 @@ export const UserPublished = styled.p`
 export const Content = styled.p`
   font-family: Poppins;
   font-size: 1rem;
+  width: 300px;
 
   border-radius: 4px;
   margin-top: 6px;

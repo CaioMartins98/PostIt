@@ -89,6 +89,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     window.history.forward(0);
+
     Feed();
   }, []);
 
@@ -123,7 +124,6 @@ const Dashboard = () => {
           <TextAreaContainer item xs={12} sm={9} md={6} lg={3} xl={3}>
             <TextArea
               data-testid="text-area-field"
-              maxLength={280}
               aria-label="minimum height"
               placeholder="Digite seu texto aqui..."
               value={textValue}
@@ -139,7 +139,7 @@ const Dashboard = () => {
           <MainGridContainer container>
             {textPost &&
               textPost.map((item, index) => (
-                <GridContainer item xs={11} sm={9} md={6} lg={4} xl={3}>
+                <GridContainer item xs={11} sm={10} md={6} lg={6} xl={3}>
                   <GridTextContainer data-testid="container-text">
                     <GridText item xs={12} sm={12} md={12} lg={12} xl={12}>
                       <GridTextArea>
@@ -160,7 +160,8 @@ const Dashboard = () => {
                         </UserPublished>
                       </GridTextArea>
                       <Divider style={{ background: 'black', marginLeft: '50px' }} />
-                      <GridList style={{ height: '150px', marginTop: '10px' }}>
+
+                      <GridList cellHeight={130}>
                         <Content>{item.content}</Content>
                       </GridList>
                     </GridText>
