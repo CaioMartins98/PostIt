@@ -14,11 +14,11 @@ export const MainContainer = styled.div`
 
 export const GridContainer = styled(Grid)`
   && {
-    display: flex;
+    display: flexbox;
     aling-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
-    width: 10vw;
+    width: 50vw;
     margin-right: 120vw;
   }
 `;
