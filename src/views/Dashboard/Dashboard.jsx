@@ -138,7 +138,7 @@ const Dashboard = () => {
           <MainGridContainer container>
             {textPost &&
               textPost.map((item, index) => (
-                <GridContainer item xs={11} sm={10} md={6} lg={6} xl={3}>
+                <GridContainer item xs={11} sm={10} md={6} lg={4} xl={3}>
                   <GridTextContainer data-testid="container-text">
                     <GridText item xs={12} sm={12} md={12} lg={12} xl={12}>
                       <GridTextArea>

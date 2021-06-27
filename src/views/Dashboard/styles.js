@@ -22,7 +22,7 @@ export const AreaContainer = styled(Grid)`
 `;
 
 export const TextAreaContainer = styled(Grid)`
-  margin-top: 2vh;
+  margin-top: 3vh;
   display: flex;
 `;
 
