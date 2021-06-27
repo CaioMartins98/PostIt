@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './reset.css';
+import GlobalStyle from './globalcss';
 import { BrowserRouter as Switch, Route, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginScreen from '../src/views/Login/Login';
@@ -10,6 +10,7 @@ import ForgotPassword from '../src/views/ForgotPassword/ForgotPassword';
 
 ReactDOM.render(
   <BrowserRouter>
+    <GlobalStyle />
     <Switch>
       <Route exact path="/" render={(props) => <LoginScreen {...props} />}></Route>
       <Route path="/cadastro" render={(props) => <Cadastro {...props} />}></Route>

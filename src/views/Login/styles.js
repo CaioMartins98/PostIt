@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Grid, Link } from '@material-ui/core';
 
 export const MainContainer = styled.div`
+  background: #ffffff;
   aling-items: center;
   justify-content: initial;
   display: flex;

@@ -10,7 +10,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import calendar from '../../assets/calendar.png';
 import moment from 'moment';
 import Divider from '@material-ui/core/Divider';
-
+import GlobalStyle from '../../globalcss';
 import {
   MainContainer,
   AreaContainer,
@@ -113,7 +113,7 @@ const Dashboard = () => {
     React(feedReaction);
   };
   return (
-    <div>
+    <div style={{ background: '#ffff' }}>
       <HeaderDashboard />
       <MainContainer cols={3}>
         <div>

@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 html,
 body,
 div,
@@ -86,7 +89,6 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -122,3 +124,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+`;
+
+export default GlobalStyle;
