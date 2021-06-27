@@ -13,7 +13,7 @@
 ![image](https://user-images.githubusercontent.com/75040066/122695623-4fcf5280-d217-11eb-8b0d-7c03c1f64f28.png)
 
 ## Tela Dashboard
-![image](https://user-images.githubusercontent.com/75040066/123361539-a1444e00-d545-11eb-804c-1144dff83ec3.png)
+![image](https://user-images.githubusercontent.com/75040066/123555300-5439c500-d75b-11eb-9ada-556af247e10a.png)
 
 
 # ⚙ Funcionalidades
