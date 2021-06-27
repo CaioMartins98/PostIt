@@ -8,7 +8,7 @@ const ModalForgotPassword = (props) => {
   const history = useHistory();
   return (
     <div>
-      <Modal size="sm" isOpen={isOpen} className={className}>
+      <Modal style={{ fontFamily: 'Poppins' }} size="sm" isOpen={isOpen} className={className}>
         <ModalHeader>Recuperação de senha</ModalHeader>
         <ModalBody>{message}</ModalBody>
         <ModalFooter>

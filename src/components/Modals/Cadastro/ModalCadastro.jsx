@@ -7,7 +7,7 @@ const ModalCadastro = (props) => {
   const history = useHistory();
   return (
     <div>
-      <Modal isOpen={isOpen} className={className}>
+      <Modal style={{ fontFamily: 'Poppins' }} isOpen={isOpen} className={className}>
         <ModalHeader>Cadastro</ModalHeader>
         <ModalBody>{message}</ModalBody>
         <ModalFooter>
